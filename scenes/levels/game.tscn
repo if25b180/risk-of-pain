@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bkleirncons3j"]
+
+[ext_resource type="Script" uid="uid://fh180bvfao1" path="res://scripts/player.gd" id="1_e6yxx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2o6t"]
+
+[sub_resource type="TileSet" id="TileSet_eqihu"]
+
+[node name="Root" type="Node2D" unique_id=1055251897]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1656818823]
+script = ExtResource("1_e6yxx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=149290075]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=306459637]
+shape = SubResource("CapsuleShape2D_e2o6t")
+
+[node name="Environment" type="TileMapLayer" parent="." unique_id=1280201688]
+tile_set = SubResource("TileSet_eqihu")
