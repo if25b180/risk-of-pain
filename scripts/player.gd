@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
 
+
 @export var speed := 200.0
 @export var gravity := 900.0
 @export var jump_force := -300.0

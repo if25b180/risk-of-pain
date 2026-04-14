@@ -119,8 +119,8 @@ modulate = Color(1, 1, 1, 0.18039216)
 z_index = -2
 texture_filter = 1
 texture_repeat = 3
-position = Vector2(102.304886, 33.860588)
-scale = Vector2(0.45976576, 0.45976573)
+position = Vector2(85.00001, 100)
+scale = Vector2(0.20738287, 0.22874865)
 texture = ExtResource("2_61jgc")
 
 [node name="Player" parent="." unique_id=1588611632 instance=ExtResource("2_eqihu")]
