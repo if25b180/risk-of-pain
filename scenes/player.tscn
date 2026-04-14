@@ -1,7 +1,18 @@
-[gd_scene format=3 uid="uid://ciamngucy1ho6"]
+[gd_scene format=3 uid="uid://c17kd3vgyjnyj"]
 
+[ext_resource type="Shader" uid="uid://byqtgkvcsf24o" path="res://scenes/player.gdshader" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://fh180bvfao1" path="res://scripts/player.gd" id="1_rggrj"]
 [ext_resource type="Texture2D" uid="uid://bg5vu5pqbto1g" path="res://Player/player_assets/p_spritesheet.png" id="2_g2els"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
+shader = ExtResource("1_qhqgy")
+shader_parameter/speed = 2.0
+shader_parameter/strength = 0.08
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhqgy"]
+shader = ExtResource("1_qhqgy")
+shader_parameter/speed = 2.0
+shader_parameter/strength = 0.08
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2o6t"]
 radius = 5.0
@@ -64,12 +75,14 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=1588611632]
+material = SubResource("ShaderMaterial_dqkch")
 script = ExtResource("1_rggrj")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383537933]
 texture_filter = 1
 texture_repeat = 1
+material = SubResource("ShaderMaterial_qhqgy")
 texture = ExtResource("2_g2els")
 hframes = 13
 vframes = 2
@@ -81,3 +94,11 @@ shape = SubResource("CapsuleShape2D_e2o6t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1459038644]
 libraries/ = SubResource("AnimationLibrary_a1osm")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1558035654]
+process_callback = 0
+limit_enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 60.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
