@@ -3,6 +3,8 @@
 [ext_resource type="Shader" uid="uid://byqtgkvcsf24o" path="res://scenes/player.gdshader" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://fh180bvfao1" path="res://scripts/player.gd" id="1_rggrj"]
 [ext_resource type="Texture2D" uid="uid://bg5vu5pqbto1g" path="res://Player/player_assets/p_spritesheet.png" id="2_g2els"]
+[ext_resource type="AudioStream" uid="uid://dkkkcovw2ci07" path="res://sounds/SFX/Jump.wav" id="4_dqkch"]
+[ext_resource type="AudioStream" uid="uid://c3ql7saiskdki" path="res://sounds/SFX/walk.wav" id="5_qlg0r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
 shader = ExtResource("1_qhqgy")
@@ -16,7 +18,7 @@ shader_parameter/strength = 0.08
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e2o6t"]
 radius = 5.0
-height = 16.97
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_61jgc"]
 length = 0.001
@@ -31,6 +33,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+resource_name = "p_air"
+length = 0.43333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [30, 31, 32]
 }
 
 [sub_resource type="Animation" id="Animation_riktp"]
@@ -48,6 +67,38 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "p_jump"
+length = 0.26666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [26, 27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "p_landing"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [41, 42, 43, 44, 45, 46, 47]
 }
 
 [sub_resource type="Animation" id="Animation_eqihu"]
@@ -70,7 +121,10 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a1osm"]
 _data = {
 &"RESET": SubResource("Animation_61jgc"),
+&"p_air": SubResource("Animation_qhqgy"),
 &"p_idle": SubResource("Animation_riktp"),
+&"p_jump": SubResource("Animation_dqkch"),
+&"p_landing": SubResource("Animation_qlg0r"),
 &"p_run": SubResource("Animation_eqihu")
 }
 
@@ -85,11 +139,11 @@ texture_repeat = 1
 material = SubResource("ShaderMaterial_qhqgy")
 texture = ExtResource("2_g2els")
 hframes = 13
-vframes = 2
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1843293746]
 z_index = -1
-position = Vector2(0, 1.515)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_e2o6t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1459038644]
@@ -102,3 +156,9 @@ position_smoothing_enabled = true
 position_smoothing_speed = 60.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="jump_SFX" type="AudioStreamPlayer2D" parent="." unique_id=615498325]
+stream = ExtResource("4_dqkch")
+
+[node name="walk_SFX" type="AudioStreamPlayer2D" parent="." unique_id=10074065]
+stream = ExtResource("5_qlg0r")
