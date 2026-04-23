@@ -7,7 +7,7 @@ shader_type canvas_item;
 
 // --- Blur settings ---
 uniform float blur_amount : hint_range(0.0, 10.0) = 3.0;
-uniform int blur_samples : hint_range(1, 16) = 8;
+uniform int blur_samples : hint_range(1, 16) = 1;
 
 // --- Distortion settings ---
 // How far UVs get pushed around, in UV space (0..1).
