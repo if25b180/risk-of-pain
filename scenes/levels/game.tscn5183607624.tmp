@@ -151,7 +151,7 @@ sources/0 = SubResource("TileSetAtlasSource_limtx")
 
 [node name="Root" type="Node2D" unique_id=847775698]
 
-[node name="ProcedualWorld" type="TileMapLayer" parent="." unique_id=1280201688 node_paths=PackedStringArray("player", "world_root", "boss_spawner")]
+[node name="ProcedualWorld" type="TileMapLayer" parent="." unique_id=1280201688 node_paths=PackedStringArray("player")]
 texture_filter = 1
 position = Vector2(8, -6)
 tile_set = SubResource("TileSet_riktp")
@@ -159,8 +159,6 @@ physics_quadrant_size = 8
 script = ExtResource("4_7rg7d")
 floor_min_y = 20
 player = NodePath("../Player")
-world_root = NodePath("..")
-boss_spawner = NodePath("../BossSpawner")
 tree_scene = ExtResource("5_uk881")
 
 [node name="Player" parent="." unique_id=1588611632 instance=ExtResource("2_eqihu")]
@@ -186,7 +184,4 @@ position = Vector2(232, 14)
 scale = Vector2(2, 2)
 texture = ExtResource("2_61jgc")
 
-[node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player", "world_root") instance=ExtResource("9_cx7qy")]
-player = NodePath("../Player")
-boss_scene = ExtResource("7_7rg7d")
-world_root = NodePath("..")
+[node name="BossSpawner" parent="." unique_id=374738399 instance=ExtResource("9_cx7qy")]

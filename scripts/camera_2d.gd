@@ -7,6 +7,10 @@ extends Camera2D
 @export var player: CharacterBody2D
 
 func _physics_process(_delta: float) -> void:
+	# May not be set immediately
+	if not player:
+		return
+	
 	# Make camera follow player
 	global_position = \
 		lerp(global_position, player.global_position, smooth_speed) \

@@ -1,9 +1,33 @@
 [gd_scene format=3 uid="uid://dajy2mhlmjfoj"]
 
 [ext_resource type="Texture2D" uid="uid://7fv5ar47y004" path="res://art/boss_spawner.png" id="1_2trd2"]
+[ext_resource type="Script" uid="uid://ke2o2gd7slcm" path="res://scenes/boss_spawner.gd" id="1_w6jr5"]
 
-[node name="BossSpawner" type="Node2D" unique_id=374738399]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6jr5"]
+size = Vector2(63, 28)
+
+[node name="BossSpawner" type="Node2D" unique_id=374738399 node_paths=PackedStringArray("label_scaler")]
+script = ExtResource("1_w6jr5")
+label_scaler = NodePath("LabelScaler")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1397585451]
-position = Vector2(0, -33)
+position = Vector2(-23, -36)
 texture = ExtResource("1_2trd2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=576058000]
+position = Vector2(8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2027454409]
+position = Vector2(-32, -17)
+shape = SubResource("RectangleShape2D_w6jr5")
+
+[node name="LabelScaler" type="Node2D" parent="." unique_id=1289089782]
+position = Vector2(-23.999998, -42.999996)
+scale = Vector2(0.315, 0.315)
+
+[node name="Label" type="Label" parent="LabelScaler" unique_id=1299143589]
+offset_left = -151.0
+offset_top = -98.0
+offset_right = 138.0
+offset_bottom = -75.0
+text = "Press E to spawn boss if you're ready!"
