@@ -169,7 +169,7 @@ z_index = -2
 texture_filter = 1
 texture_repeat = 3
 material = SubResource("ShaderMaterial_7rg7d")
-position = Vector2(151, 16)
+position = Vector2(153, 15)
 scale = Vector2(0.34150878, 0.37669298)
 texture = ExtResource("2_61jgc")
 
