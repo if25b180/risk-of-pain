@@ -5,9 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bdot5acjfjokp" path="res://art/tilesets/test_grass_tile.png" id="1_riktp"]
 [ext_resource type="Texture2D" uid="uid://e115dmb6kbnd" path="res://art/tsdest.png" id="2_61jgc"]
 [ext_resource type="PackedScene" uid="uid://c17kd3vgyjnyj" path="res://scenes/player.tscn" id="2_eqihu"]
-[ext_resource type="Script" uid="uid://6amtf8nu5iur" path="res://scenes/levels/procedual_world.gd" id="4_7rg7d"]
+[ext_resource type="Script" uid="uid://6amtf8nu5iur" path="res://scripts/procedual_world.gd" id="4_7rg7d"]
 [ext_resource type="PackedScene" uid="uid://cpers5gp5gjif" path="res://scenes/duck.tscn" id="7_7rg7d"]
-[ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scenes/camera_2d.gd" id="8_xmnyv"]
+[ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scripts/camera_2d.gd" id="8_xmnyv"]
+[ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/boss_spawner.tscn" id="9_cx7qy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -167,7 +168,6 @@ limit_enabled = false
 position_smoothing_speed = 60.0
 script = ExtResource("8_xmnyv")
 min_x = 100
-smooth_speed = 0.22
 player = NodePath("../Player")
 
 [node name="Duck" parent="." unique_id=127115235 instance=ExtResource("7_7rg7d")]
@@ -181,3 +181,5 @@ texture_repeat = 1
 position = Vector2(232, 14)
 scale = Vector2(2, 2)
 texture = ExtResource("2_61jgc")
+
+[node name="BossSpawner" parent="." unique_id=374738399 instance=ExtResource("9_cx7qy")]

@@ -7,9 +7,6 @@ extends Camera2D
 @export var player: CharacterBody2D
 
 func _physics_process(_delta: float) -> void:
-	var mouse_x = get_global_mouse_position().x
-	var mouse_y = get_global_mouse_position().y
-	
 	# Make camera follow player
 	global_position = \
 		lerp(global_position, player.global_position, smooth_speed) \

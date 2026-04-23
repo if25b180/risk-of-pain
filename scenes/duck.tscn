@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cpers5gp5gjif"]
 
-[ext_resource type="Script" uid="uid://ddr44i72gnb5o" path="res://scenes/duck.gd" id="1_tils5"]
+[ext_resource type="Script" uid="uid://ddr44i72gnb5o" path="res://scripts/duck.gd" id="1_tils5"]
 [ext_resource type="Texture2D" uid="uid://c8eyp561kc7gb" path="res://art/duck.png" id="2_tils5"]
 
 [sub_resource type="Animation" id="Animation_ircvx"]

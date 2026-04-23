@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dajy2mhlmjfoj"]
+
+[ext_resource type="Texture2D" uid="uid://7fv5ar47y004" path="res://art/boss_spawner.png" id="1_2trd2"]
+
+[node name="BossSpawner" type="Node2D" unique_id=374738399]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1397585451]
+position = Vector2(0, -33)
+texture = ExtResource("1_2trd2")
