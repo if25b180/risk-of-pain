@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cpers5gp5gjif" path="res://scenes/duck.tscn" id="7_7rg7d"]
 [ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scripts/camera_2d.gd" id="8_xmnyv"]
 [ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/boss_spawner.tscn" id="9_cx7qy"]
+[ext_resource type="PackedScene" uid="uid://cqbcj4tqdyhxu" path="res://scenes/menu/main_menu.tscn" id="11_r0gsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -190,3 +191,5 @@ texture = ExtResource("2_61jgc")
 player = NodePath("../Player")
 boss_scene = ExtResource("7_7rg7d")
 world_root = NodePath("..")
+
+[node name="MainMenu" parent="." unique_id=2134883615 instance=ExtResource("11_r0gsk")]

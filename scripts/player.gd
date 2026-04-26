@@ -17,6 +17,11 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
+	if Input.is_action_just_pressed("pause"):
+		get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+		#TODO: Implement Pause Screen
+		#Now it only goes back to the main menu
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_force
 		animation.play("p_jump")

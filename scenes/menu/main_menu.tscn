@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://cqbcj4tqdyhxu"]
+
+[ext_resource type="Script" uid="uid://rdfjnopki6u4" path="res://scenes/menu/main_menu.gd" id="1_3rkf3"]
+[ext_resource type="Texture2D" uid="uid://e115dmb6kbnd" path="res://art/bg_test.png" id="1_nl8w3"]
+[ext_resource type="Texture2D" uid="uid://bts8vw0gj72ie" path="res://art/menu_assets/menu_bg.png" id="3_247la"]
+[ext_resource type="Script" uid="uid://nr53iafjmhud" path="res://scenes/menu/fullscreen_control.gd" id="4_kiqgm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3rkf3"]
+texture = ExtResource("1_nl8w3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kiqgm"]
+texture = ExtResource("3_247la")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70654"]
+bg_color = Color(0.3529412, 0.4117647, 0.53333336, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22745098, 0.26666668, 0.4, 1)
+
+[node name="MainMenu" type="Control" unique_id=2134883615]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3rkf3")
+
+[node name="backgorund" type="Panel" parent="." unique_id=1000340531]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3rkf3")
+
+[node name="logo" type="Panel" parent="." unique_id=2146977713]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kiqgm")
+
+[node name="main_buttons" type="VBoxContainer" parent="." unique_id=770343717]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3625
+anchor_top = 0.57222223
+anchor_right = 0.6375
+anchor_bottom = 1.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="start_game" type="Button" parent="main_buttons" unique_id=759748141]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.7529412, 0.79607844, 0.8627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_70654")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_70654")
+theme_override_styles/hover = SubResource("StyleBoxFlat_70654")
+text = "Start Game"
+
+[node name="settings" type="Button" parent="main_buttons" unique_id=879672767]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.7529412, 0.79607844, 0.8627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_70654")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_70654")
+theme_override_styles/hover = SubResource("StyleBoxFlat_70654")
+text = "Settings"
+
+[node name="exit_game" type="Button" parent="main_buttons" unique_id=934083611]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.7529412, 0.79607844, 0.8627451, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_70654")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_70654")
+theme_override_styles/hover = SubResource("StyleBoxFlat_70654")
+text = "Exit"
+
+[node name="settings" type="Panel" parent="." unique_id=2018267759]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -81.5
+offset_right = 107.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="settings" unique_id=1023231451]
+layout_mode = 0
+offset_left = 76.0
+offset_top = -4.5
+offset_right = 138.0
+offset_bottom = 18.5
+text = "Settings"
+
+[node name="back_to_main" type="Button" parent="settings/Label" unique_id=1282055135]
+texture_filter = 1
+layout_mode = 0
+offset_left = 119.0
+offset_top = 7.0
+offset_right = 136.0
+offset_bottom = 23.0
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.7529412, 0.79607844, 0.8627451, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_70654")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_70654")
+theme_override_styles/hover = SubResource("StyleBoxFlat_70654")
+text = "X"
+
+[node name="fullscreen_control" type="CheckButton" parent="settings" unique_id=1877581404]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -15.5
+offset_right = 63.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Fullscreen"
+script = ExtResource("4_kiqgm")
+
+[connection signal="pressed" from="main_buttons/start_game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="main_buttons/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="main_buttons/exit_game" to="." method="_on_exit_game_pressed"]
+[connection signal="pressed" from="settings/Label/back_to_main" to="." method="_on_back_to_main_pressed"]
+[connection signal="toggled" from="settings/fullscreen_control" to="settings/fullscreen_control" method="_on_toggled"]
