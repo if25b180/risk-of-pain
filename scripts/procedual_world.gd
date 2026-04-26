@@ -5,6 +5,7 @@ extends TileMapLayer
 @export var y_jump_range_max: int = 6
 @export var chunk_width: int = 10
 @export var tree_chance: int = 30
+@export var enemy_chance: int = 10
 @export var boss_spawner_chunk: int = 3
 
 @export var player: CharacterBody2D
@@ -12,6 +13,7 @@ extends TileMapLayer
 @export var boss_spawner: Node2D
 
 @export var tree_scene: PackedScene
+@export var enemy_scene: PackedScene
 
 var chunk_count = 0
 var floor_current_y = -1
@@ -38,6 +40,14 @@ func generate_next():
 		world_root.add_child(tree)
 		tree.global_position = Vector2(tree_x, tree_y)
 		tree.z_index = -1
+	
+	if randi_range(0, 100) < enemy_chance:
+		var enemy = enemy_scene.instantiate()
+		var enemy_x = chunk_count * chunk_width * tile_set.tile_size.x \
+			+ randi_range(2, chunk_width - 2) * tile_set.tile_size.x
+		var enemy_y = (floor_current_y * tile_set.tile_size.y) - 50
+		world_root.add_child(enemy)
+		enemy.global_position = Vector2(enemy_x, enemy_y)
 	
 	for i in range(chunk_width):
 		var current_x = chunk_count * chunk_width + i

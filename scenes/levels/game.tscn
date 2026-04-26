@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scripts/camera_2d.gd" id="8_xmnyv"]
 [ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/boss_spawner.tscn" id="9_cx7qy"]
 [ext_resource type="PackedScene" uid="uid://cqbcj4tqdyhxu" path="res://scenes/menu/main_menu.tscn" id="11_r0gsk"]
+[ext_resource type="PackedScene" uid="uid://dcx1xdqyauqko" path="res://scenes/enemy.tscn" id="12_oi2tv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -163,6 +164,7 @@ player = NodePath("../Player")
 world_root = NodePath("..")
 boss_spawner = NodePath("../BossSpawner")
 tree_scene = ExtResource("5_uk881")
+enemy_scene = ExtResource("12_oi2tv")
 
 [node name="Player" parent="." unique_id=1588611632 instance=ExtResource("2_eqihu")]
 position = Vector2(112, 122)
@@ -179,7 +181,6 @@ player = NodePath("../Player")
 position = Vector2(234, 30)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1750528705]
-visible = false
 z_index = -2
 texture_filter = 1
 texture_repeat = 1

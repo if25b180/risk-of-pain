@@ -1,13 +1,42 @@
 [gd_scene format=3 uid="uid://dcx1xdqyauqko"]
 
 [ext_resource type="Script" uid="uid://dw02bv2wxljs2" path="res://scripts/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Texture2D" uid="uid://pheump8ntv81" path="res://art/enemy_assets/knight_base_sprite.png" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://31rq1yamp61u" path="res://art/enemy_assets/knight_attack.png" id="3_4ra3w"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tegq"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ra3w"]
+radius = 8.0
+height = 18.0
 
-[node name="Enemy" type="RigidBody2D" unique_id=127115235]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
+radius = 9.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=223010565]
+collision_layer = 2
+up_direction = Vector2(0, 1)
 script = ExtResource("1_7p1mj")
+normal_texture = ExtResource("2_md0e3")
+attack_texture = ExtResource("3_4ra3w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1800397363]
+texture = ExtResource("2_md0e3")
+offset = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=862276379]
-shape = SubResource("RectangleShape2D_8tegq")
+position = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_4ra3w")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1918442115]
+target_position = Vector2(15, 12)
+
+[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=677006667]
+target_position = Vector2(16, 0)
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1263762866]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1740375523]
+position = Vector2(11, -2)
+shape = SubResource("CircleShape2D_5uy6h")
+disabled = true
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

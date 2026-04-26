@@ -128,7 +128,7 @@ _data = {
 &"p_run": SubResource("Animation_eqihu")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1588611632]
+[node name="Player" type="CharacterBody2D" unique_id=1588611632 groups=["player"]]
 material = SubResource("ShaderMaterial_dqkch")
 script = ExtResource("1_rggrj")
 metadata/_edit_group_ = true
