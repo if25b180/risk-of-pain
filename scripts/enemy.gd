@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@export var health: float = 50
+@export var damage: float = 15
+
 @export var speed := 50.0
 @export var gravity := 900.0
 @export var attack_duration := 0.5
@@ -62,5 +65,10 @@ func flip_direction():
 	
 	$AttackArea.position.x = abs($AttackArea.position.x) * direction
 
+
+
+
+
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body is Player:
+		body.hurt(damage)

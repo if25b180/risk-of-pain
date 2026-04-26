@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dajy2mhlmjfoj"]
 
 [ext_resource type="Texture2D" uid="uid://7fv5ar47y004" path="res://art/boss_spawner.png" id="1_2trd2"]
-[ext_resource type="Script" uid="uid://ke2o2gd7slcm" path="res://scenes/boss_spawner.gd" id="1_w6jr5"]
+[ext_resource type="Script" uid="uid://ke2o2gd7slcm" path="res://scripts/boss_spawner.gd" id="1_w6jr5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6jr5"]
 size = Vector2(63, 28)

@@ -32,7 +32,7 @@ func generate_next():
 	floor_current_y += randi_range(y_jump_range_min, y_jump_range_max)
 	floor_current_y = clamp(floor_current_y, floor_min_y, 1400)
 	
-	if randi_range(0, 100) > 100 - tree_chance:
+	if randi_range(0, 100) < tree_chance:
 		var tree: Node2D = tree_scene.instantiate()
 		var tree_x = chunk_count * chunk_width * tile_set.tile_size.x \
 			+ randi_range(3, chunk_width - 3) * tile_set.tile_size.x

@@ -33,10 +33,10 @@ target_position = Vector2(15, 12)
 target_position = Vector2(16, 0)
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1263762866]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1740375523]
 position = Vector2(11, -2)
 shape = SubResource("CircleShape2D_5uy6h")
-disabled = true
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

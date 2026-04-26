@@ -1,10 +1,16 @@
 extends CharacterBody2D
 
+class_name Player
+
 @onready var animation = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var jump_sfx: AudioStreamPlayer2D = $jump_SFX
 @onready var walk_sfx: AudioStreamPlayer2D = $walk_SFX
+@onready var hurt_sfx: AudioStreamPlayer2D = $hurt_SFX
 
+
+@export var health: float = 100
+@export var damage: float = 30
 
 @export var speed := 200.0
 @export var gravity := 900.0
@@ -47,3 +53,11 @@ func _physics_process(delta):
 		else:
 			if animation.current_animation != "p_idle":
 				animation.play("p_idle")
+
+
+#damage calculation
+func hurt(damage):
+	hurt_sfx.play()
+	health -= damage
+	if health <= 0:
+		get_tree().reload_current_scene()
