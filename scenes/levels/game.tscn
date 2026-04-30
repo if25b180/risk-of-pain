@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://c48gseoduw58e" path="res://art/tilesets/test_grass.png" id="1_61jgc"]
 [ext_resource type="Texture2D" uid="uid://d26f3o3pjsgnh" path="res://art/tilesets/test_tile_bg.png" id="1_a1osm"]
 [ext_resource type="Texture2D" uid="uid://bdot5acjfjokp" path="res://art/tilesets/test_grass_tile.png" id="1_riktp"]
-[ext_resource type="Texture2D" uid="uid://cevb1qo1jmfqo" path="res://art/environment/background.png" id="2_61jgc"]
 [ext_resource type="PackedScene" uid="uid://c17kd3vgyjnyj" path="res://scenes/player.tscn" id="2_eqihu"]
 [ext_resource type="Script" uid="uid://6amtf8nu5iur" path="res://scripts/procedual_world.gd" id="4_7rg7d"]
 [ext_resource type="PackedScene" uid="uid://uliaxnllbgym" path="res://scenes/tree.tscn" id="5_uk881"]
@@ -181,14 +180,6 @@ player = NodePath("../Player")
 
 [node name="Duck" parent="." unique_id=127115235 instance=ExtResource("7_7rg7d")]
 position = Vector2(234, 30)
-
-[node name="Background" type="Sprite2D" parent="." unique_id=1750528705]
-z_index = -2
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(232, 14)
-scale = Vector2(2, 2)
-texture = ExtResource("2_61jgc")
 
 [node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player", "world_root") instance=ExtResource("9_cx7qy")]
 player = NodePath("../Player")

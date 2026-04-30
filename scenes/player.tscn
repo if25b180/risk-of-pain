@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bg5vu5pqbto1g" path="res://art/player_assets/player_normal.png" id="2_g2els"]
 [ext_resource type="AudioStream" uid="uid://dkkkcovw2ci07" path="res://sounds/Jump.wav" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://34r3riuwud6h" path="res://art/player_assets/player_slash.png" id="4_fjrip"]
-[ext_resource type="AudioStream" uid="uid://c3ql7saiskdki" path="res://sounds/walk.wav" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://docvmk0r0ybkc" path="res://sounds/walk.ogg" id="6_fjrip"]
 [ext_resource type="AudioStream" uid="uid://b177s3nssiaib" path="res://sounds/PlayerDamage.wav" id="6_tuyoq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
@@ -175,9 +175,11 @@ libraries/ = SubResource("AnimationLibrary_a1osm")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="." unique_id=615498325]
 stream = ExtResource("4_dqkch")
+volume_db = -20.695
+pitch_scale = 0.83
 
 [node name="WalkSound" type="AudioStreamPlayer2D" parent="." unique_id=10074065]
-stream = ExtResource("5_qlg0r")
+stream = ExtResource("6_fjrip")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1842459668]
 stream = ExtResource("6_tuyoq")
