@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ds080rdwls3su"]
 
-[ext_resource type="Script" uid="uid://ddr44i72gnb5o" path="res://scripts/duck.gd" id="1_neq0i"]
-[ext_resource type="Texture2D" uid="uid://c8eyp561kc7gb" path="res://art/duck.png" id="2_jncid"]
+[ext_resource type="Script" uid="uid://ddr44i72gnb5o" path="res://scripts/enemies/duck.gd" id="1_neq0i"]
+[ext_resource type="Texture2D" path="res://art/duck.png" id="2_jncid"]
 
 [sub_resource type="Animation" id="Animation_ircvx"]
 resource_name = "DuckFlying"

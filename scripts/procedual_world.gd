@@ -1,12 +1,14 @@
 extends TileMapLayer
 
-@export var floor_min_y: int = 0 # This is TileMap position NOT World position!
+@export var floor_min_y: int = 0 ## This is TileMap position NOT World position!
+@export var floor_max_y: int = 1400 ## This is TileMap position NOT World position!
 @export var y_jump_range_min: int = -6
 @export var y_jump_range_max: int = 6
 @export var chunk_width: int = 10
+@export var boss_spawner_chunk: int = 3
+
 @export var tree_chance: int = 30
 @export var enemy_chance: int = 10
-@export var boss_spawner_chunk: int = 3
 
 @export var player: CharacterBody2D
 @export var world_root: Node2D
@@ -28,26 +30,36 @@ var tiles = {
 	dirt_middle = Vector2i(5, 0),
 }
 
-func generate_next():
+func node_chance(
+	scene: PackedScene,
+	chance_0_100: int,
+	terrain_padding: int,
+	position_offset: Vector2 = Vector2.ZERO
+):
+	if (clamp(chance_0_100, 0, 100) != chance_0_100):
+		print("Node Spawn Chance for ", scene, " is not between 0 and 100")
+		return null
+	
+	if randi_range(0, 100) < chance_0_100:
+		var new_node: Node2D = scene.instantiate()
+		var x = chunk_count * chunk_width * tile_set.tile_size.x \
+			+ randi_range(terrain_padding, chunk_width - terrain_padding) \
+			* tile_set.tile_size.x
+		var y = floor_current_y * tile_set.tile_size.y
+		
+		world_root.add_child(new_node)
+		new_node.global_position = Vector2(x + position_offset.x, y + position_offset.y)
+	
+		return new_node
+	
+	return null
+
+func generate_next_chunk():
 	floor_current_y += randi_range(y_jump_range_min, y_jump_range_max)
-	floor_current_y = clamp(floor_current_y, floor_min_y, 1400)
+	floor_current_y = clamp(floor_current_y, floor_min_y, floor_max_y)
 	
-	if randi_range(0, 100) < tree_chance:
-		var tree: Node2D = tree_scene.instantiate()
-		var tree_x = chunk_count * chunk_width * tile_set.tile_size.x \
-			+ randi_range(3, chunk_width - 3) * tile_set.tile_size.x
-		var tree_y = floor_current_y * tile_set.tile_size.y
-		world_root.add_child(tree)
-		tree.global_position = Vector2(tree_x, tree_y)
-		tree.z_index = -1
-	
-	if randi_range(0, 100) < enemy_chance:
-		var enemy = enemy_scene.instantiate()
-		var enemy_x = chunk_count * chunk_width * tile_set.tile_size.x \
-			+ randi_range(2, chunk_width - 2) * tile_set.tile_size.x
-		var enemy_y = (floor_current_y * tile_set.tile_size.y) - 50
-		world_root.add_child(enemy)
-		enemy.global_position = Vector2(enemy_x, enemy_y)
+	node_chance(tree_scene, tree_chance, 3)
+	node_chance(enemy_scene, enemy_chance, 2, Vector2(0, -50))
 	
 	for i in range(chunk_width):
 		var current_x = chunk_count * chunk_width + i
@@ -78,16 +90,16 @@ func generate_next():
 	
 	chunk_count += 1
 
-func _ready() -> void:
+func _ready():
 	floor_current_y = floor_min_y
 
-func _process(delta: float) -> void:
+func _process(_delta):
 	var camera_box_right = get_viewport().get_camera_2d().global_position.x + get_viewport_rect().size.x
 	#print(camera_box_right)
 	
 	# Fill camera void
 	if (camera_box_right / tile_set.tile_size.x) > (chunk_width * chunk_count):
-		generate_next()
+		generate_next_chunk()
 	
 	
 	

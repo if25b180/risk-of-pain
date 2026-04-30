@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uliaxnllbgym"]
 
-[ext_resource type="Texture2D" uid="uid://dcsoawn2ux3cj" path="res://art/tree.png" id="1_avsvi"]
+[ext_resource type="Texture2D" uid="uid://74lhvogu65s7" path="res://art/environment/tree.png" id="1_avsvi"]
 
 [node name="Tree" type="Node2D" unique_id=374738399]
 

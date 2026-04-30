@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c48gseoduw58e" path="res://art/tilesets/test_grass.png" id="1_61jgc"]
 [ext_resource type="Texture2D" uid="uid://d26f3o3pjsgnh" path="res://art/tilesets/test_tile_bg.png" id="1_a1osm"]
 [ext_resource type="Texture2D" uid="uid://bdot5acjfjokp" path="res://art/tilesets/test_grass_tile.png" id="1_riktp"]
-[ext_resource type="Texture2D" uid="uid://e115dmb6kbnd" path="res://art/tsdest.png" id="2_61jgc"]
+[ext_resource type="Texture2D" uid="uid://cevb1qo1jmfqo" path="res://art/environment/background.png" id="2_61jgc"]
 [ext_resource type="PackedScene" uid="uid://c17kd3vgyjnyj" path="res://scenes/player.tscn" id="2_eqihu"]
 [ext_resource type="Script" uid="uid://6amtf8nu5iur" path="res://scripts/procedual_world.gd" id="4_7rg7d"]
 [ext_resource type="PackedScene" uid="uid://uliaxnllbgym" path="res://scenes/tree.tscn" id="5_uk881"]
@@ -11,7 +11,8 @@
 [ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scripts/camera_2d.gd" id="8_xmnyv"]
 [ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/boss_spawner.tscn" id="9_cx7qy"]
 [ext_resource type="PackedScene" uid="uid://cqbcj4tqdyhxu" path="res://scenes/menu/main_menu.tscn" id="11_r0gsk"]
-[ext_resource type="PackedScene" uid="uid://dcx1xdqyauqko" path="res://scenes/enemy.tscn" id="12_oi2tv"]
+[ext_resource type="PackedScene" uid="uid://dcx1xdqyauqko" path="res://scenes/knight_enemy.tscn" id="12_oi2tv"]
+[ext_resource type="Script" uid="uid://bnbswquk3gwal" path="res://scripts/controller.gd" id="13_6370d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -160,6 +161,7 @@ tile_set = SubResource("TileSet_riktp")
 physics_quadrant_size = 8
 script = ExtResource("4_7rg7d")
 floor_min_y = 20
+enemy_chance = 50
 player = NodePath("../Player")
 world_root = NodePath("..")
 boss_spawner = NodePath("../BossSpawner")
@@ -194,3 +196,7 @@ boss_scene = ExtResource("7_7rg7d")
 world_root = NodePath("..")
 
 [node name="MainMenu" parent="." unique_id=2134883615 instance=ExtResource("11_r0gsk")]
+visible = false
+
+[node name="Controller" type="Node" parent="." unique_id=353361165]
+script = ExtResource("13_6370d")

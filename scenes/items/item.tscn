@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bs1ad6nwcpkoo"]
+
+[ext_resource type="Script" uid="uid://gi0nxhfud0q4" path="res://scripts/items/base/item.gd" id="1_5uh1b"]
+[ext_resource type="Texture2D" uid="uid://bp6gdevk1fawv" path="res://art/items/speed_boost.png" id="2_jgeia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fat2f"]
+size = Vector2(10, 10)
+
+[node name="Item" type="Node2D" unique_id=1363583896]
+script = ExtResource("1_5uh1b")
+item_name = ""
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=16991366]
+texture = ExtResource("2_jgeia")
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=1241392619]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=529937250]
+shape = SubResource("RectangleShape2D_fat2f")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

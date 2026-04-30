@@ -154,7 +154,6 @@ hframes = 13
 vframes = 4
 
 [node name="PlayerSlash" type="Sprite2D" parent="." unique_id=1895304980]
-visible = false
 position = Vector2(0, 3)
 texture = ExtResource("4_fjrip")
 

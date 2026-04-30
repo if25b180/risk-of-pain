@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dcx1xdqyauqko"]
+
+[ext_resource type="Script" uid="uid://hdml0cntwop7" path="res://scripts/enemies/knight.gd" id="1_7giku"]
+[ext_resource type="Texture2D" uid="uid://pheump8ntv81" path="res://art/enemy_assets/knight_normal.png" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://31rq1yamp61u" path="res://art/enemy_assets/knight_attack.png" id="3_4ra3w"]
+[ext_resource type="Script" uid="uid://d1pgfnsfhb45k" path="res://scripts/enemies/miscellaneous/enemy_hitbox.gd" id="4_2tlyw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ra3w"]
+radius = 8.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7giku"]
+size = Vector2(16, 21)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=223010565 node_paths=PackedStringArray("attack_area")]
+collision_layer = 2
+up_direction = Vector2(0, 1)
+script = ExtResource("1_7giku")
+normal_texture = ExtResource("2_md0e3")
+attack_texture = ExtResource("3_4ra3w")
+attack_area = NodePath("AttackArea")
+item_drop_chance_percent = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1800397363]
+texture = ExtResource("2_md0e3")
+offset = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=862276379]
+position = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_4ra3w")
+
+[node name="FloorDetector" type="RayCast2D" parent="." unique_id=1918442115]
+target_position = Vector2(15, 12)
+
+[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=677006667]
+target_position = Vector2(16, 0)
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1263762866]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1740375523]
+position = Vector2(11, -2)
+shape = SubResource("CircleShape2D_5uy6h")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1259427655]
+script = ExtResource("4_2tlyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=702002932]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_7giku")
+debug_color = Color(0.88268113, 0.1831297, 0.69575804, 0.41960785)
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
