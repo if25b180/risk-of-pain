@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Enemy
 
-@onready var world_root: Node = get_tree().root.get_child(0)
+@onready var world_root: Node = get_node("/root/Root")
 
 @export var attack_area: Area2D
 
