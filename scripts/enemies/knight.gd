@@ -69,12 +69,3 @@ func flip_direction():
 	
 	var collider = $AttackArea/CollisionShape2D
 	collider.position.x = abs(collider.position.x) * direction
-
-
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body is Player:
-		player_in_focus = body
-
-func _on_attack_area_body_exited(body: Node2D) -> void:
-	if body is Player:
-		player_in_focus = null
