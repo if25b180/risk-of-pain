@@ -153,19 +153,21 @@ sources/0 = SubResource("TileSetAtlasSource_limtx")
 
 [node name="Root" type="Node2D" unique_id=847775698]
 
-[node name="ProcedualWorld" type="TileMapLayer" parent="." unique_id=1280201688 node_paths=PackedStringArray("player", "world_root", "boss_spawner")]
+[node name="ProcedualWorld" type="TileMapLayer" parent="." unique_id=1280201688 node_paths=PackedStringArray("boss_spawner", "player")]
 texture_filter = 1
 position = Vector2(8, -6)
 tile_set = SubResource("TileSet_riktp")
 physics_quadrant_size = 8
 script = ExtResource("4_7rg7d")
 floor_min_y = 20
-enemy_chance = 50
-player = NodePath("../Player")
-world_root = NodePath("..")
 boss_spawner = NodePath("../BossSpawner")
+player = NodePath("../Player")
 tree_scene = ExtResource("5_uk881")
+tree_chance = 40
 enemy_scene = ExtResource("12_oi2tv")
+enemy_chance = 30
+duck_scene = ExtResource("7_7rg7d")
+duck_chance = 40
 
 [node name="Player" parent="." unique_id=1588611632 instance=ExtResource("2_eqihu")]
 position = Vector2(112, 122)
@@ -178,13 +180,9 @@ script = ExtResource("8_xmnyv")
 min_x = 100
 player = NodePath("../Player")
 
-[node name="Duck" parent="." unique_id=127115235 instance=ExtResource("7_7rg7d")]
-position = Vector2(234, 30)
-
-[node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player", "world_root") instance=ExtResource("9_cx7qy")]
+[node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player") instance=ExtResource("9_cx7qy")]
 player = NodePath("../Player")
 boss_scene = ExtResource("7_7rg7d")
-world_root = NodePath("..")
 
 [node name="MainMenu" parent="." unique_id=2134883615 instance=ExtResource("11_r0gsk")]
 visible = false

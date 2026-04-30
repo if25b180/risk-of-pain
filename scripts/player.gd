@@ -16,15 +16,19 @@ class_name Player
 @export var attack_duration: float = 0.4
 
 @export var stats: Dictionary[String, float] = {
-	health = 100,
+	health = 10000000000,
 	damage_primary = 20,
 	damage_secondary = 30,
 	speed = 50,
 	slipperiness = 0.65,
 	gravity = 20,
 	jump_force = -300,
+	jump_release_multiplier = 0.45,
 	wall_jump_force = -300,
 }
+
+# String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
+var items: Dictionary[String, Dictionary] = {}
 
 var initial_stats = stats
 var was_on_floor = false
@@ -65,6 +69,9 @@ func _physics_process(_delta):
 			animation.play("p_jump")
 			jump_sfx.play()
 	
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y *= stats.jump_release_multiplier
+	
 	move_and_slide()
 	#endregion
 	
@@ -102,6 +109,11 @@ func attack():
 	
 	sprite.visible = false
 	sprite_slash.visible = true
+	
+	for item_scene in items:
+		var item_properties = items[item_scene]
+		if item_properties.attack_hook != null:
+			item_properties.attack_hook.call($".", item_properties.count)
 	
 	var areas = attack_area.get_overlapping_areas()
 	for area in areas:

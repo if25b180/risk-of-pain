@@ -51,7 +51,7 @@ height = 20.0
 
 [node name="Duck" type="CharacterBody2D" unique_id=1659116030 groups=["enemy"]]
 script = ExtResource("1_tils5")
-item_drop_chance_percent = 30
+fly_speed = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1800397363]
 texture = ExtResource("2_tils5")

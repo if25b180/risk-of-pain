@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Enemy
 
-@onready var world_root: Node = get_node("/root/Root")
-
 @export var attack_area: Area2D
 
 @export var health: float = 50
@@ -24,8 +22,7 @@ func hurt(received_damage):
 			var dropped_item_scene = ItemPool.items.pick_random()
 			var dropped_item: Node2D = dropped_item_scene.instantiate()
 			
-			print("worldroot ", world_root)
-			world_root.add_child(dropped_item)
+			Util.get_world_root().add_child(dropped_item)
 			dropped_item.global_position = global_position
 		
 		queue_free()

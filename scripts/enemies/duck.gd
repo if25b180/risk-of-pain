@@ -1,20 +1,36 @@
-extends Node2D
+extends Enemy
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@export var fly_speed: int
+@export var fly_speed_range: Dictionary[String, float] = {
+	min = 0.8,
+	max = 1.9
+}
 @export var max_fly_distance: int = 200
 
-@export var health: float = 10
-@export var damage: float = 20
+var min_x: float
+var max_x: float
+var start_global_position = null
+var fly_speed = randf_range(fly_speed_range.min, fly_speed_range.max)
 
-var min_x = global_position.x
-var max_x = min_x + max_fly_distance
+var timer = 0
 
 func _ready():
+	
+	$Sprite2D.flip_h = true
 	animation_player.play("DuckFlying")
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if start_global_position == null:
+		start_global_position = global_position
+		min_x = global_position.x
+		max_x = min_x + max_fly_distance
+		return
+	
 	global_position.x += fly_speed
+	
+	timer += delta
+	var bop_y = 16
+	global_position.y = start_global_position.y + sin(timer * 2.0) * bop_y
 	
 	if (global_position.x < min_x || global_position.x > max_x):
 		fly_speed = -fly_speed

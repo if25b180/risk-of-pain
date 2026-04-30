@@ -5,7 +5,7 @@ extends Node
 var items: Array[PackedScene] = []
 
 # We use `_` for signalizing private members since this is a global autoload
-var _path_item_scenes = "res://scenes/items/"
+var _path_item_scenes = "res://scenes/items/pickups/"
 
 # https://forum.godotengine.org/t/how-to-get-all-the-files-inside-a-folder/32086
 func load_item_scenes():

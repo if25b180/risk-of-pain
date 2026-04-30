@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dupst2bitxjlp"]
+
+[ext_resource type="PackedScene" uid="uid://bs1ad6nwcpkoo" path="res://scenes/items/pickups/item.tscn" id="1_db17i"]
+[ext_resource type="Script" uid="uid://cexqw74efebrr" path="res://scripts/items/pickups/speed.gd" id="2_487ib"]
+
+[node name="Item" unique_id=1363583896 instance=ExtResource("1_db17i")]
+item_name = "Speed"
+item_description = "You get a flat speed boost."
+item_script = ExtResource("2_487ib")

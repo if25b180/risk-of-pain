@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dmr1thpwcqyjw"]
+
+[ext_resource type="Script" uid="uid://bbbluin4c8t6d" path="res://scripts/items/accessoires/fireball_projectile.gd" id="1_o2dt2"]
+[ext_resource type="Texture2D" uid="uid://yu5v5dvttk4d" path="res://art/items/fireball.png" id="2_idimb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dti60"]
+size = Vector2(9, 9)
+
+[node name="FireballProjectile" type="Node2D" unique_id=1109550636]
+script = ExtResource("1_o2dt2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2052618449]
+texture = ExtResource("2_idimb")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1363963425]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=755392280]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_dti60")
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

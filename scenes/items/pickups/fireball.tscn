@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://baafa5v0qapxx"]
+
+[ext_resource type="PackedScene" uid="uid://bs1ad6nwcpkoo" path="res://scenes/items/pickups/item.tscn" id="1_08r17"]
+[ext_resource type="Script" uid="uid://floxhdydkf52" path="res://scripts/items/pickups/fireball.gd" id="2_08r17"]
+[ext_resource type="Texture2D" uid="uid://yu5v5dvttk4d" path="res://art/items/fireball.png" id="3_mvbr0"]
+
+[node name="Item" unique_id=1363583896 instance=ExtResource("1_08r17")]
+item_name = "Fireball"
+item_description = "Chance to shoot a fireball."
+item_script = ExtResource("2_08r17")
+
+[node name="Sprite2D" parent="." index="0" unique_id=16991366]
+texture = ExtResource("3_mvbr0")

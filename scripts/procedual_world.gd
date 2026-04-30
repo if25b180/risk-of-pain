@@ -7,15 +7,19 @@ extends TileMapLayer
 @export var chunk_width: int = 10
 @export var boss_spawner_chunk: int = 3
 
+@export var boss_spawner: Node2D
+@export var player: CharacterBody2D
+
+#region Random Node Spawns
+@export var tree_scene: PackedScene
 @export var tree_chance: int = 30
+
+@export var enemy_scene: PackedScene
 @export var enemy_chance: int = 10
 
-@export var player: CharacterBody2D
-@export var world_root: Node2D
-@export var boss_spawner: Node2D
-
-@export var tree_scene: PackedScene
-@export var enemy_scene: PackedScene
+@export var duck_scene: PackedScene
+@export var duck_chance: int = 10
+#endregion
 
 var chunk_count = 0
 var floor_current_y = -1
@@ -47,7 +51,7 @@ func node_chance(
 			* tile_set.tile_size.x
 		var y = floor_current_y * tile_set.tile_size.y
 		
-		world_root.add_child(new_node)
+		Util.get_world_root().add_child(new_node)
 		new_node.global_position = Vector2(x + position_offset.x, y + position_offset.y)
 	
 		return new_node
@@ -60,6 +64,7 @@ func generate_next_chunk():
 	
 	node_chance(tree_scene, tree_chance, 3)
 	node_chance(enemy_scene, enemy_chance, 2, Vector2(0, -50))
+	node_chance(duck_scene, duck_chance, 2, Vector2(0, -100))
 	
 	for i in range(chunk_width):
 		var current_x = chunk_count * chunk_width + i

@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 ItemPool="*uid://jfida3ks8bx"
+Util="*uid://dsyn4gghj5mpc"
+PreloadManager="*uid://dsdtifqil47th"
 
 [display]
 
@@ -38,6 +40,10 @@ folder_colors={
 "res://shaders/": "gray",
 "res://sounds/": "pink"
 }
+
+[global_group]
+
+enemy=""
 
 [input]
 
