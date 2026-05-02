@@ -180,6 +180,17 @@ script = ExtResource("8_xmnyv")
 min_x = 100
 player = NodePath("../Player")
 
+[node name="ItemList" type="ItemList" parent="Camera2D" unique_id=63420635 groups=["enemy", "player"]]
+texture_filter = 1
+offset_left = -106.0
+offset_top = -77.0
+offset_right = 101.0
+offset_bottom = -56.0
+theme_override_constants/icon_margin = 2
+theme_override_font_sizes/font_size = 4
+allow_search = false
+max_columns = 5
+
 [node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player") instance=ExtResource("9_cx7qy")]
 player = NodePath("../Player")
 boss_scene = ExtResource("7_7rg7d")

@@ -7,6 +7,10 @@ class_name Player
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var attack_area: Area2D = $PlayerSlash/AttackArea
 @onready var attack_area_collider: CollisionShape2D = $PlayerSlash/AttackArea/CollisionShape2D
+#UI Elements
+@onready var healthbar: ProgressBar = $Healthbar
+@onready var item_list: ItemList = $"../Camera2D/ItemList"
+
 
 @onready var jump_sfx: AudioStreamPlayer2D = $JumpSound
 @onready var walk_sfx: AudioStreamPlayer2D = $WalkSound
@@ -16,7 +20,7 @@ class_name Player
 @export var attack_duration: float = 0.4
 
 @export var stats: Dictionary[String, float] = {
-	health = 10000000000,
+	health = 100,
 	damage_primary = 20,
 	damage_secondary = 30,
 	speed = 50,
@@ -26,6 +30,8 @@ class_name Player
 	jump_release_multiplier = 0.45,
 	wall_jump_force = -300,
 }
+
+
 
 # String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
 var items: Dictionary[String, Dictionary] = {}
@@ -102,7 +108,24 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("attack_primary"):
 		attack()
 	#endregion
-
+	
+	#healtbar
+	healthbar.value = stats.health
+	
+func item_inventory_ui() -> void:
+	item_list.clear()
+	
+	for item_scene in items:
+		var item_data = items[item_scene]
+		
+		var item_counter = "x%d" % item_data.count
+		
+			
+		var list_item = item_list.add_item(item_counter, item_data.item_image)
+		item_list.set_item_tooltip(list_item, item_data.item_description)
+		item_list.set_item_selectable(list_item, false)
+	
+	
 func attack():
 	if sprite_slash.visible:
 		return
@@ -112,14 +135,16 @@ func attack():
 	
 	for item_scene in items:
 		var item_properties = items[item_scene]
+		
 		if item_properties.attack_hook != null:
 			item_properties.attack_hook.call($".", item_properties.count)
+		
+	
 	
 	var areas = attack_area.get_overlapping_areas()
 	for area in areas:
 		if not area is EnemyHitbox:
 			continue
-			
 		var hit_enemy = area.get_parent()
 		if not hit_enemy is Enemy:
 			print("EnemyHitbox attached to non-Enemy type? (", hit_enemy, ")")

@@ -56,11 +56,15 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 	if not player.items.has(item_scene):
 		player.items[item_scene] = {
 			count = 1,
-			attack_hook = item_on_player_attack
+			attack_hook = item_on_player_attack,
+			item_image = item_image,
+			item_name = item_name,
+			item_description = item_description
 		}
 	else:
 		player.items[item_scene].count += 1
-	print(player.items)
+	
+	player.item_inventory_ui()
 	#endregion
 	
 	queue_free()
