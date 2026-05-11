@@ -18,6 +18,8 @@ var already_attacked = false
 
 
 func _physics_process(delta):
+	super._physics_process(delta)
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 

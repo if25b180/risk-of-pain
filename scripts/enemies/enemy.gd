@@ -15,7 +15,6 @@ func _ready():
 	attack_area.connect("body_entered", _on_attack_area_body_entered)
 	attack_area.connect("body_exited", _on_attack_area_body_exited)
 
-
 func hurt(received_damage):
 	health -= received_damage
 	if health <= 0:

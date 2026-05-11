@@ -119,10 +119,8 @@ func item_inventory_ui() -> void:
 	
 	for item_scene in items:
 		var item_data = items[item_scene]
-		
 		var item_counter = "x%d" % item_data.count
 		
-			
 		var list_item = item_list.add_item(item_counter, item_data.item_image)
 		item_list.set_item_tooltip(list_item, item_data.item_description)
 		item_list.set_item_selectable(list_item, false)

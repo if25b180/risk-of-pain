@@ -19,6 +19,8 @@ func _ready():
 	animation_player.play("DuckFlying")
 
 func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	
 	if start_global_position == null:
 		start_global_position = global_position
 		min_x = global_position.x

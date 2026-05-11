@@ -6,7 +6,7 @@ func get_world_root() -> Node:
 		_world_root = get_node_or_null("/root/Root")
 	return _world_root
 
-func get_player() -> Node:
+func get_player() -> Player:
 	var potential_players = get_tree().get_nodes_in_group("player")
 	for potential_player in potential_players:
 		if potential_player is Player:
