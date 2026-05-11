@@ -31,8 +31,6 @@ class_name Player
 	wall_jump_force = -300,
 }
 
-
-
 # String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
 var items: Dictionary[String, Dictionary] = {}
 
@@ -138,8 +136,6 @@ func attack():
 		
 		if item_properties.attack_hook != null:
 			item_properties.attack_hook.call($".", item_properties.count)
-		
-	
 	
 	var areas = attack_area.get_overlapping_areas()
 	for area in areas:

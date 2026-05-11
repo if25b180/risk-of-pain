@@ -8,8 +8,10 @@ class_name Enemy
 @export var item_drop_chance_percent: int = 10
 
 var player_in_focus = null
+var max_health: float = health
 
 func _ready():
+	max_health = health
 	attack_area.connect("body_entered", _on_attack_area_body_entered)
 	attack_area.connect("body_exited", _on_attack_area_body_exited)
 

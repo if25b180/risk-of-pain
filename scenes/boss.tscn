@@ -1,54 +1,56 @@
 [gd_scene format=3 uid="uid://ds080rdwls3su"]
 
-[ext_resource type="Script" uid="uid://ddr44i72gnb5o" path="res://scripts/enemies/duck.gd" id="1_neq0i"]
-[ext_resource type="Texture2D" path="res://art/duck.png" id="2_jncid"]
+[ext_resource type="Script" uid="uid://c0v4555mrgdyf" path="res://scripts/enemies/boss.gd" id="1_neq0i"]
+[ext_resource type="Texture2D" uid="uid://bmhy5pcvc62n1" path="res://art/enemy_assets/boss.png" id="2_neq0i"]
+[ext_resource type="Texture2D" uid="uid://dn40o3hgm5lt0" path="res://art/enemy_assets/boss_attack.png" id="3_qnbj4"]
+[ext_resource type="Script" uid="uid://d1pgfnsfhb45k" path="res://scripts/enemies/miscellaneous/enemy_hitbox.gd" id="4_2cdgk"]
 
-[sub_resource type="Animation" id="Animation_ircvx"]
-resource_name = "DuckFlying"
-length = 0.53333336
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333333, 0.2, 0.26666668, 0.33333334, 0.4, 0.46666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 6, 3, 4, 5, 6, 7]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3bxh"]
+size = Vector2(32, 63)
 
-[sub_resource type="Animation" id="Animation_kls7j"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqpjq"]
+size = Vector2(23, 54)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwgnm"]
-_data = {
-&"DuckFlying": SubResource("Animation_ircvx"),
-&"RESET": SubResource("Animation_kls7j")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7giku"]
+size = Vector2(32, 64)
 
-[node name="Duck" type="Node2D" unique_id=560092221]
+[node name="Boss" type="CharacterBody2D" unique_id=223010565 node_paths=PackedStringArray("attack_area") groups=["enemy"]]
+collision_layer = 2
+up_direction = Vector2(0, 1)
 script = ExtResource("1_neq0i")
-fly_speed = 2
+normal_texture = ExtResource("2_neq0i")
+attack_texture = ExtResource("3_qnbj4")
+attack_area = NodePath("AttackArea")
+health = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1800397363]
-texture = ExtResource("2_jncid")
-hframes = 8
+texture = ExtResource("2_neq0i")
+offset = Vector2(0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=862497187]
-root_node = NodePath("../Sprite2D")
-libraries/ = SubResource("AnimationLibrary_hwgnm")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=862276379]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_r3bxh")
+
+[node name="FloorDetector" type="RayCast2D" parent="." unique_id=1918442115]
+target_position = Vector2(15, 12)
+
+[node name="PlayerDetector" type="RayCast2D" parent="." unique_id=677006667]
+target_position = Vector2(16, 0)
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1263762866]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1740375523]
+position = Vector2(12.5, 0)
+shape = SubResource("RectangleShape2D_wqpjq")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1259427655]
+script = ExtResource("4_2cdgk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=702002932]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_7giku")
+debug_color = Color(0.88268113, 0.1831297, 0.69575804, 0.41960785)
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

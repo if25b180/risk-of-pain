@@ -6,6 +6,14 @@ func get_world_root() -> Node:
 		_world_root = get_node_or_null("/root/Root")
 	return _world_root
 
+func get_player() -> Node:
+	var potential_players = get_tree().get_nodes_in_group("player")
+	for potential_player in potential_players:
+		if potential_player is Player:
+			return potential_player
+			
+	return null
+
 # See -> https://godotforums.org/d/35773-only-4-line-of-code-to-get-the-nearest-node/7
 func find_closest_node(from_position: Vector2, group: String):
 	var nodes = get_tree().get_nodes_in_group(group)

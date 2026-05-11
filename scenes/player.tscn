@@ -148,7 +148,6 @@ bg_color = Color(0.9490196, 0, 0, 0.53333336)
 
 [node name="Player" type="CharacterBody2D" unique_id=1588611632 groups=["player"]]
 material = SubResource("ShaderMaterial_dqkch")
-position = Vector2(0, -1)
 script = ExtResource("1_rggrj")
 metadata/_edit_group_ = true
 

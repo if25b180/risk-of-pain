@@ -15,7 +15,6 @@ var fly_speed = randf_range(fly_speed_range.min, fly_speed_range.max)
 var timer = 0
 
 func _ready():
-	
 	$Sprite2D.flip_h = true
 	animation_player.play("DuckFlying")
 
