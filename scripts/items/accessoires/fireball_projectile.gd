@@ -5,17 +5,26 @@ extends Node2D
 @export var damage: float = 10
 
 var range = 500000 # XD
-
 var target_enemy: Enemy = null
 var target_position = Vector2.ZERO
+var default_direction = Vector2.UP
+
+func _ready() -> void:
+	var input = Vector2.ZERO
+	if Input.is_action_pressed("move_left"): input.x -= 1
+	if Input.is_action_pressed("move_right"): input.x += 1
+	if Input.is_action_pressed("move_down"): input.y += 1
+	if Input.is_action_pressed("move_up"): input.y -= 1
+	
+	#default
+	if input == Vector2.ZERO:
+		input = default_direction
+	
+	target_position = global_position + input.normalized() * range
 
 func _physics_process(delta: float) -> void:
 	fly_speed *= fly_speed_multiplier
 	
-	if target_enemy and target_position == Vector2.ZERO:
-		target_position = target_enemy.global_position
-		target_position.y -= 100
-		target_position = target_position.normalized() * range
 		
 	global_position = global_position.move_toward(target_position, fly_speed * delta)
 	if (global_position == target_position):

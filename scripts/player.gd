@@ -37,6 +37,7 @@ var items: Dictionary[String, Dictionary] = {}
 var initial_stats = stats
 var was_on_floor = false
 
+var facing = Vector2.RIGHT
 
 func reset_stats():
 	stats = initial_stats
@@ -59,6 +60,9 @@ func _physics_process(_delta):
 	
 	var direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	velocity.x += direction * stats.speed
+	
+	if direction != 0:
+		facing.x = direction
 	
 	if Input.is_action_just_pressed("jump"):
 		var has_jumped = is_on_floor() || is_on_wall()
