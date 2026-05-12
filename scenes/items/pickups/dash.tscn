@@ -7,6 +7,7 @@
 [node name="Item" unique_id=1363583896 instance=ExtResource("1_h4cvq")]
 item_name = "Dash"
 item_description = "Allows you to dash"
+item_rarity = 2
 item_script = ExtResource("2_h4cvq")
 
 [node name="Sprite2D" parent="." index="0" unique_id=16991366]

@@ -11,6 +11,7 @@ size = Vector2(10, 10)
 script = ExtResource("1_mup4m")
 item_name = "Poison Vial"
 item_description = "Applies a poison effect on meele hits"
+item_rarity = 1
 item_script = ExtResource("2_tw8c0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=16991366]

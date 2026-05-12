@@ -8,7 +8,6 @@ size = Vector2(10, 10)
 
 [node name="Item" type="Node2D" unique_id=1363583896]
 script = ExtResource("1_5uh1b")
-item_name = ""
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=16991366]
 texture = ExtResource("2_jgeia")

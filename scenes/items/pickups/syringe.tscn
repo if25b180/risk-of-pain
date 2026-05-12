@@ -7,6 +7,7 @@
 [node name="Item" unique_id=1363583896 instance=ExtResource("1_040f6")]
 item_name = "Syringe"
 item_description = "You get passive health regeneration"
+item_rarity = 1
 item_script = ExtResource("2_040f6")
 
 [node name="Sprite2D" parent="." index="0" unique_id=16991366]

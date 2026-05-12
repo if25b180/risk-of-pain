@@ -25,7 +25,7 @@ func hurt(received_damage):
 	if health <= 0:
 		if randi_range(0, 100) < item_drop_chance_percent:
 			print(ItemPool.items)
-			var dropped_item_scene = ItemPool.items.pick_random()
+			var dropped_item_scene = ItemPool.get_random_item()
 			
 			# TODO: This is only a workaround for Sprint 4:
 			# Attempt to call function 'instantiate' in base 'null instance' on a null instancee

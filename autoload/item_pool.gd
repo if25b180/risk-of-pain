@@ -1,8 +1,41 @@
 extends Node
 # See Project > Project Settings > Globals > Autoload
 
+enum ItemRarity {
+	NORMAL,
+	RARE,
+	LEGENDARY
+}
+
 # public ->
 var items: Array[PackedScene] = []
+
+func get_random_item():
+	print("item random get")
+	var chance = randi_range(0, 100)
+	var chosen_rarity = ItemRarity.NORMAL
+	
+	if chance < 35:
+		chosen_rarity = ItemRarity.RARE
+	if chance < 5:
+		chosen_rarity = ItemRarity.LEGENDARY
+	
+	# TODO: Maybe make this a more efficient algorithm
+	var chosen_item: PackedScene = items.pick_random()
+	var chosen_item_instance: Item = chosen_item.instantiate()
+	var retries = 100
+	while chosen_item_instance.item_rarity != chosen_rarity:
+		if retries <= 0:
+			break
+		
+		chosen_item = items.pick_random()
+		
+		chosen_item_instance.free() # Immediate free as to not execute its code
+		chosen_item_instance = chosen_item.instantiate()
+		
+		retries -= 1
+	
+	return chosen_item
 
 # We use `_` for signalizing private members since this is a global autoload
 var _path_item_scenes = "res://scenes/items/pickups/"
@@ -24,6 +57,7 @@ func load_item_scenes():
 		
 		if not file.begins_with("."):
 			var scene = load(_path_item_scenes + file)
-			items.append(scene)
+			if scene:
+				items.append(scene)
 
 	dir.list_dir_end()

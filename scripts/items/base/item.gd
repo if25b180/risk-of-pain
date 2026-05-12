@@ -1,9 +1,11 @@
 extends Node2D
+class_name Item
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 @export var item_name: String = "TestItem"
 @export var item_description: String = "ItemDescription"
+@export var item_rarity: ItemPool.ItemRarity = ItemPool.ItemRarity.NORMAL
 
 ## Define a new item with a funtcion `on_pickup(player: Player)` inside a new .gd script
 ## and/or `on_player_attack_primary(own_item_count: int)` to hook into the player's primary attack

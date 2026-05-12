@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://4rueg8bmlxa1"]
 
 [ext_resource type="PackedScene" uid="uid://bs1ad6nwcpkoo" path="res://scenes/items/pickups/item.tscn" id="1_cqt6x"]
-[ext_resource type="Script" uid="uid://cnn24mpsx5fj4" path="res://scripts/items/pickups/damage_primary_increase.gd" id="2_2u4ur"]
 [ext_resource type="Texture2D" uid="uid://0u8hogi8f53k" path="res://art/items/damage_increase.png" id="3_tumbt"]
 
 [node name="Item" unique_id=1363583896 instance=ExtResource("1_cqt6x")]
-item_name = "Damage Increase"
-item_description = "Your primary weapon gets a flat damage boost."
-item_script = ExtResource("2_2u4ur")
+item_name = "Sword"
+item_description = "Increases Primary Attack Damage"
 
 [node name="Sprite2D" parent="." index="0" unique_id=16991366]
 texture = ExtResource("3_tumbt")
