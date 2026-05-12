@@ -48,3 +48,17 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_focus = null
+
+func apply_fire(duration: float, dps: float) -> void:
+	var timer = get_tree().create_timer(duration)
+	var tick = get_tree().create_timer(1.0)
+	var remaining = duration
+	while remaining > 0:
+		await get_tree().create_timer(1.0).timeout
+		hurt(dps)
+		remaining -= 1.0
+
+func apply_poison(dps: float) -> void:
+	while is_instance_valid(self):
+		await get_tree().create_timer(1.0).timeout
+		hurt(dps)
