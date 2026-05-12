@@ -55,6 +55,9 @@ var initial_stats = stats
 var was_on_floor = false
 var attack_secondary_locked = false
 
+var chosen_slash = slash # left and right
+var chosen_slash_area = slash_attack_area
+
 var facing = Vector2.RIGHT
 
 func reset_stats():
@@ -156,15 +159,15 @@ func item_inventory_ui() -> void:
 		item_list.set_item_tooltip(list_item, item_data.item_description)
 		item_list.set_item_selectable(list_item, false)
 	
-	
+
 func attack():
 	if slash.visible \
 			or slash_down.visible \
 			or slash_up.visible:
 		return
 	
-	var chosen_slash = slash # left and right
-	var chosen_slash_area = slash_attack_area
+	chosen_slash = slash # left and right
+	chosen_slash_area = slash_attack_area
 	if Input.is_action_pressed("move_down") and not is_on_floor():
 		chosen_slash = slash_down
 		chosen_slash_area = slash_down_attack_area
