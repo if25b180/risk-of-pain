@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cm3aoy3rb3em2"]
+
+[ext_resource type="PackedScene" uid="uid://bs1ad6nwcpkoo" path="res://scenes/items/pickups/item.tscn" id="1_040f6"]
+[ext_resource type="Script" uid="uid://dhr1cr2qxnr4l" path="res://scripts/items/pickups/syringe.gd" id="2_040f6"]
+[ext_resource type="Texture2D" uid="uid://krkd2gq6be6j" path="res://art/items/passiveregen.png" id="3_cbeb8"]
+
+[node name="Item" unique_id=1363583896 instance=ExtResource("1_040f6")]
+item_name = "Syringe"
+item_description = "You get passive health regeneration"
+item_script = ExtResource("2_040f6")
+
+[node name="Sprite2D" parent="." index="0" unique_id=16991366]
+texture = ExtResource("3_cbeb8")
