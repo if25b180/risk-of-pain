@@ -93,8 +93,6 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= stats.jump_release_multiplier
-	
-	move_and_slide()
 	#endregion
 	
 	#region Animations
@@ -125,8 +123,20 @@ func _physics_process(_delta):
 		attack()
 	#endregion
 	
-	#healtbar
+	#region Passive Item Effects
+	for item_scene in items:
+		var item_properties = items[item_scene]
+		
+		if item_properties.passive_hook != null:
+			item_properties.passive_hook.call($".", item_properties.count)
+	#endregion
+	
+	# Healtbar
 	healthbar.value = stats.health
+	
+	# We wanna move and slide at the end just in case any item manipulates movement
+	# (e. g. See `dash.gd`)
+	move_and_slide()
 	
 func item_inventory_ui() -> void:
 	item_list.clear()
@@ -148,7 +158,7 @@ func attack():
 	
 	var chosen_slash = slash # left and right
 	var chosen_slash_area = slash_attack_area
-	if Input.is_action_pressed("move_down"):
+	if Input.is_action_pressed("move_down") and not is_on_floor():
 		chosen_slash = slash_down
 		chosen_slash_area = slash_down_attack_area
 	if Input.is_action_pressed("move_up"):

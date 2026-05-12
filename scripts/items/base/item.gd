@@ -46,6 +46,10 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 	var item_on_player_attack = null
 	if item_script_instance.has_method("on_player_attack_primary"):
 		item_on_player_attack = item_script_instance.on_player_attack_primary
+		
+	var item_on_passive = null
+	if item_script_instance.has_method("on_passive"):
+		item_on_passive = item_script_instance.on_passive
 	
 	if item_script_instance.has_method("on_pickup"):
 		item_script_instance.on_pickup(player)
@@ -57,6 +61,7 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 		player.items[item_scene] = {
 			count = 1,
 			attack_hook = item_on_player_attack,
+			passive_hook = item_on_passive,
 			item_image = item_image,
 			item_name = item_name,
 			item_description = item_description
