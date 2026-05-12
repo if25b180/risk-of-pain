@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cqbcj4tqdyhxu" path="res://scenes/menu/main_menu.tscn" id="11_r0gsk"]
 [ext_resource type="PackedScene" uid="uid://dcx1xdqyauqko" path="res://scenes/knight_enemy.tscn" id="12_oi2tv"]
 [ext_resource type="Script" uid="uid://bnbswquk3gwal" path="res://scripts/controller.gd" id="13_6370d"]
+[ext_resource type="PackedScene" uid="uid://x80idmqfq6tx" path="res://scenes/items/pickups/feather.tscn" id="14_fojqs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -202,3 +203,9 @@ visible = false
 
 [node name="Controller" type="Node" parent="." unique_id=353361165]
 script = ExtResource("13_6370d")
+
+[node name="Item" parent="." unique_id=1363583896 instance=ExtResource("14_fojqs")]
+position = Vector2(86, 133)
+
+[node name="Item2" parent="." unique_id=1699650358 instance=ExtResource("14_fojqs")]
+position = Vector2(68, 132)

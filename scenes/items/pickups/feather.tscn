@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://x80idmqfq6tx"]
+
+[ext_resource type="PackedScene" uid="uid://bs1ad6nwcpkoo" path="res://scenes/items/pickups/item.tscn" id="1_ssnan"]
+[ext_resource type="Script" uid="uid://bnf2t4qfecnm3" path="res://scripts/items/pickups/feather.gd" id="2_ssnan"]
+[ext_resource type="Texture2D" uid="uid://3wigniwrbvii" path="res://art/items/feather.png" id="3_tkk7f"]
+
+[node name="Item" unique_id=1363583896 instance=ExtResource("1_ssnan")]
+item_name = "Feather"
+item_description = "Allows you to jump once more"
+item_script = ExtResource("2_ssnan")
+
+[node name="Sprite2D" parent="." index="0" unique_id=16991366]
+texture = ExtResource("3_tkk7f")
