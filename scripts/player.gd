@@ -34,6 +34,7 @@ class_name Player
 
 @export var stats: Dictionary[String, float] = {
 	health = 100,
+	max_health = 100,
 	damage_primary = 20,
 	damage_secondary = 30,
 	speed = 50,
@@ -132,7 +133,7 @@ func _physics_process(_delta):
 	#endregion
 	
 	# Healtbar
-	healthbar.value = stats.health
+	healthbar.value = (stats.health / stats.max_health) * 100
 	
 	# We wanna move and slide at the end just in case any item manipulates movement
 	# (e. g. See `dash.gd`)
