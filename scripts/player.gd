@@ -52,7 +52,7 @@ class_name Player
 # String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
 var items: Dictionary[String, Dictionary] = {}
 
-var initial_stats = stats
+var initial_stats = stats.duplicate()
 var was_on_floor = false
 var attack_secondary_locked = false
 
