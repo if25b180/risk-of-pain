@@ -1,20 +1,33 @@
 extends CharacterBody2D
 class_name Player
 
-
 @onready var sprite: Sprite2D = $PlayerNormal
-@onready var sprite_slash: Sprite2D = $PlayerSlash
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var attack_area: Area2D = $PlayerSlash/AttackArea
-@onready var attack_area_collider: CollisionShape2D = $PlayerSlash/AttackArea/CollisionShape2D
-#UI Elements
+
+#region Slashing up/down/left/right
+@onready var slash: Sprite2D = $PlayerSlash
+@onready var slash_attack_area: Area2D = $PlayerSlash/AttackArea
+@onready var slash_attack_area_collider: CollisionShape2D = $PlayerSlash/AttackArea/CollisionShape2D
+
+@onready var slash_up: Sprite2D = $PlayerSlashUp
+@onready var slash_up_attack_area: Area2D = $PlayerSlashUp/AttackArea
+@onready var slash_up_attack_area_collider: CollisionShape2D = $PlayerSlashUp/AttackArea/CollisionShape2D
+
+@onready var slash_down: Sprite2D = $PlayerSlashDown
+@onready var slash_down_attack_area: Area2D = $PlayerSlashDown/AttackArea
+@onready var slash_down_attack_area_collider: CollisionShape2D = $PlayerSlashDown/AttackArea/CollisionShape2D
+#endregion
+
+#region UI Elements
 @onready var healthbar: ProgressBar = $Healthbar
 @onready var item_list: ItemList = $"../Camera2D/ItemList"
+#endregion
 
-
+#region SFX
 @onready var jump_sfx: AudioStreamPlayer2D = $JumpSound
 @onready var walk_sfx: AudioStreamPlayer2D = $WalkSound
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSound
+#endregion
 
 @export var world_min_y: int = -500
 @export var attack_duration: float = 0.4
@@ -29,6 +42,7 @@ class_name Player
 	jump_force = -300,
 	jump_release_multiplier = 0.45,
 	wall_jump_force = -300,
+	pogo_force = -300,
 }
 
 # String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
@@ -86,7 +100,7 @@ func _physics_process(_delta):
 	#region Animations
 	if direction != 0:
 		sprite.flip_h = direction < 0
-		sprite_slash.flip_h = direction < 0
+		slash.flip_h = direction < 0
 		
 		
 	if not is_on_floor():
@@ -105,7 +119,7 @@ func _physics_process(_delta):
 	
 	#region Attacking
 	if direction != 0:
-		attack_area_collider.position.x = abs(attack_area_collider.position.x) * direction
+		slash_attack_area_collider.position.x = abs(slash_attack_area_collider.position.x) * direction
 	
 	if Input.is_action_just_pressed("attack_primary"):
 		attack()
@@ -127,11 +141,22 @@ func item_inventory_ui() -> void:
 	
 	
 func attack():
-	if sprite_slash.visible:
+	if slash.visible \
+			or slash_down.visible \
+			or slash_up.visible:
 		return
 	
+	var chosen_slash = slash # left and right
+	var chosen_slash_area = slash_attack_area
+	if Input.is_action_pressed("move_down"):
+		chosen_slash = slash_down
+		chosen_slash_area = slash_down_attack_area
+	if Input.is_action_pressed("move_up"):
+		chosen_slash = slash_up
+		chosen_slash_area = slash_up_attack_area
+	
 	sprite.visible = false
-	sprite_slash.visible = true
+	chosen_slash.visible = true
 	
 	for item_scene in items:
 		var item_properties = items[item_scene]
@@ -139,7 +164,7 @@ func attack():
 		if item_properties.attack_hook != null:
 			item_properties.attack_hook.call($".", item_properties.count)
 	
-	var areas = attack_area.get_overlapping_areas()
+	var areas = chosen_slash_area.get_overlapping_areas()
 	for area in areas:
 		if not area is EnemyHitbox:
 			continue
@@ -148,6 +173,9 @@ func attack():
 			print("EnemyHitbox attached to non-Enemy type? (", hit_enemy, ")")
 			continue
 		
+		if chosen_slash == slash_down:
+			velocity.y = stats.pogo_force
+		
 		if hit_enemy.has_method("hurt"):
 			hit_enemy.hurt(stats.damage_primary)
 		else:
@@ -155,7 +183,7 @@ func attack():
 	
 	await get_tree().create_timer(attack_duration).timeout
 	sprite.visible = true
-	sprite_slash.visible = false
+	chosen_slash.visible = false
 	
 	
 	

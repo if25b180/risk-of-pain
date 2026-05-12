@@ -10,6 +10,9 @@ class_name Enemy
 var player_in_focus = null
 var max_health: float = health
 
+func _physics_process(delta: float) -> void:
+	pass
+
 func _ready():
 	max_health = health
 	attack_area.connect("body_entered", _on_attack_area_body_entered)

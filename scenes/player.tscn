@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bg5vu5pqbto1g" path="res://art/player_assets/player_normal.png" id="2_g2els"]
 [ext_resource type="AudioStream" uid="uid://dkkkcovw2ci07" path="res://sounds/Jump.wav" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://34r3riuwud6h" path="res://art/player_assets/player_slash.png" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://bp5lhwqau81ly" path="res://art/player_assets/player_slash_up.png" id="5_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://docvmk0r0ybkc" path="res://sounds/walk.ogg" id="6_fjrip"]
 [ext_resource type="AudioStream" uid="uid://b177s3nssiaib" path="res://sounds/PlayerDamage.wav" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://cqqi0k8cot6qo" path="res://art/player_assets/player_slash_down.png" id="6_y4r1p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
 shader = ExtResource("1_qhqgy")
@@ -19,7 +21,7 @@ shader_parameter/speed = 2.0
 shader_parameter/strength = 0.08
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(29, 23)
+size = Vector2(29, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tuyoq"]
 size = Vector2(8, 18)
@@ -168,6 +170,31 @@ texture = ExtResource("4_fjrip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSlash/AttackArea" unique_id=671807411]
 position = Vector2(13.5, -0.5)
+shape = SubResource("RectangleShape2D_fjrip")
+debug_color = Color(1, 0.33877006, 0.5315358, 0.41960785)
+
+[node name="PlayerSlashUp" type="Sprite2D" parent="." unique_id=1430626524]
+visible = false
+texture = ExtResource("5_ur7pv")
+
+[node name="AttackArea" type="Area2D" parent="PlayerSlashUp" unique_id=1904133664]
+position = Vector2(-14, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSlashUp/AttackArea" unique_id=974995484]
+position = Vector2(13.5, 4.5)
+shape = SubResource("RectangleShape2D_fjrip")
+debug_color = Color(1, 0.33877006, 0.5315358, 0.41960785)
+
+[node name="PlayerSlashDown" type="Sprite2D" parent="." unique_id=1038468417]
+visible = false
+position = Vector2(0, 14)
+texture = ExtResource("6_y4r1p")
+
+[node name="AttackArea" type="Area2D" parent="PlayerSlashDown" unique_id=232720883]
+position = Vector2(-14, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSlashDown/AttackArea" unique_id=580485618]
+position = Vector2(13.5, 4)
 shape = SubResource("RectangleShape2D_fjrip")
 debug_color = Color(1, 0.33877006, 0.5315358, 0.41960785)
 
