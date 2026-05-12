@@ -46,6 +46,7 @@ class_name Player
 	jump_release_multiplier = 0.45,
 	wall_jump_force = -300,
 	pogo_force = -300,
+	parry_force = 300,
 }
 
 # String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
@@ -63,7 +64,16 @@ var facing = Vector2.RIGHT
 func reset_stats():
 	stats = initial_stats
 
-func hurt(damage):
+func hurt(damage, damager: Node = null):
+	# is attacking, could benefit from its own variable readability wise...
+	if chosen_slash and chosen_slash.visible:
+		velocity.x -= facing.x * stats.parry_force
+		
+		if damager and damager.has_method('on_parry'):
+			damager.on_parry()
+		
+		return
+	
 	hurt_sfx.play()
 	stats.health -= damage
 	if stats.health <= 0:

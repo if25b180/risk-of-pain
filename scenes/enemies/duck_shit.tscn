@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yob3x"]
 size = Vector2(7, 5)
 
-[node name="Arrow" type="Sprite2D" unique_id=1031175842]
+[node name="DuckShit" type="Sprite2D" unique_id=1031175842]
 texture = ExtResource("1_7reff")
 script = ExtResource("2_brjla")
 

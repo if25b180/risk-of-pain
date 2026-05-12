@@ -163,7 +163,7 @@ texture = ExtResource("2_g2els")
 hframes = 13
 vframes = 4
 
-[node name="PlayerSlash" type="Sprite2D" parent="." unique_id=1895304980]
+[node name="PlayerSlash" type="Sprite2D" parent="." unique_id=1895304980 groups=["player_attack"]]
 visible = false
 position = Vector2(0, 3)
 texture = ExtResource("4_fjrip")
@@ -175,7 +175,7 @@ position = Vector2(13.5, -0.5)
 shape = SubResource("RectangleShape2D_fjrip")
 debug_color = Color(1, 0.33877006, 0.5315358, 0.41960785)
 
-[node name="PlayerSlashUp" type="Sprite2D" parent="." unique_id=1430626524]
+[node name="PlayerSlashUp" type="Sprite2D" parent="." unique_id=1430626524 groups=["player_attack"]]
 visible = false
 texture = ExtResource("5_ur7pv")
 
@@ -187,7 +187,7 @@ position = Vector2(13.5, 4.5)
 shape = SubResource("RectangleShape2D_fjrip")
 debug_color = Color(1, 0.33877006, 0.5315358, 0.41960785)
 
-[node name="PlayerSlashDown" type="Sprite2D" parent="." unique_id=1038468417]
+[node name="PlayerSlashDown" type="Sprite2D" parent="." unique_id=1038468417 groups=["player_attack"]]
 visible = false
 position = Vector2(0, 14)
 texture = ExtResource("6_y4r1p")
