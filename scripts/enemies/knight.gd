@@ -16,6 +16,13 @@ var direction = 1
 var is_attacking = false
 var already_attacked = false
 
+func hurt(damage):
+	super.hurt(damage)
+	var player = Util.get_player()
+	if player:
+		var player_dir = sign(player.global_position.x - global_position.x)
+		if player_dir != 0 and player_dir != direction:
+			flip_direction()
 
 func _physics_process(delta):
 	super._physics_process(delta)
@@ -58,7 +65,13 @@ func start_attack():
 	
 	if normal_texture:
 		sprite.texture = normal_texture
-		
+	
+	# If it weren't for this could sometimes lead to a softlock
+	# if we killed the enemy and then the await ends
+	if not is_instance_valid(self):
+		print("WARN: Softlock Crisis averted")
+		return
+	
 	is_attacking = false
 
 func flip_direction():

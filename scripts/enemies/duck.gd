@@ -7,6 +7,9 @@ extends Enemy
 }
 @export var max_fly_distance: int = 200
 
+@export var shit_chance_0_100: int = 2
+@export var shit_scene: PackedScene
+
 var min_x: float
 var max_x: float
 var start_global_position = null
@@ -20,6 +23,11 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
+	
+	if randi_range(0, 100) < shit_chance_0_100:
+		var new_node: Node2D = shit_scene.instantiate()
+		Util.get_world_root().add_child(new_node)
+		new_node.global_position = global_position
 	
 	if start_global_position == null:
 		start_global_position = global_position

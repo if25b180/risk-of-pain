@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://byqtgkvcsf24o" path="res://shaders/player.gdshader" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://fh180bvfao1" path="res://scripts/player.gd" id="1_rggrj"]
 [ext_resource type="Texture2D" uid="uid://bg5vu5pqbto1g" path="res://art/player_assets/player_normal.png" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://c2t0gnxcxsayr" path="res://scenes/player/arrow.tscn" id="3_h17s1"]
 [ext_resource type="AudioStream" uid="uid://dkkkcovw2ci07" path="res://sounds/Jump.wav" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://34r3riuwud6h" path="res://art/player_assets/player_slash.png" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bp5lhwqau81ly" path="res://art/player_assets/player_slash_up.png" id="5_ur7pv"]
@@ -151,6 +152,7 @@ bg_color = Color(0.9490196, 0, 0, 0.53333336)
 [node name="Player" type="CharacterBody2D" unique_id=1588611632 groups=["player"]]
 material = SubResource("ShaderMaterial_dqkch")
 script = ExtResource("1_rggrj")
+attack_secondary_scene = ExtResource("3_h17s1")
 metadata/_edit_group_ = true
 
 [node name="PlayerNormal" type="Sprite2D" parent="." unique_id=1383537933]

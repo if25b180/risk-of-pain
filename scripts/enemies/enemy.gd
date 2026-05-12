@@ -10,8 +10,10 @@ class_name Enemy
 var player_in_focus = null
 var max_health: float = health
 
-func _physics_process(delta: float) -> void:
-	pass
+func _physics_process(_delta: float) -> void:
+	var healthbar: ProgressBar = $Healthbar
+	if healthbar:
+		healthbar.value = (health / max_health) * 100
 
 func _ready():
 	max_health = health
@@ -24,6 +26,13 @@ func hurt(received_damage):
 		if randi_range(0, 100) < item_drop_chance_percent:
 			print(ItemPool.items)
 			var dropped_item_scene = ItemPool.items.pick_random()
+			
+			# TODO: This is only a workaround for Sprint 4:
+			# Attempt to call function 'instantiate' in base 'null instance' on a null instancee
+			if not dropped_item_scene:
+				queue_free()
+				return
+				
 			var dropped_item: Node2D = dropped_item_scene.instantiate()
 			
 			Util.get_world_root().add_child(dropped_item)

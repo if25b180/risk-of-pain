@@ -32,6 +32,8 @@ class_name Player
 @export var world_min_y: int = -500
 @export var attack_duration: float = 0.4
 
+@export var attack_secondary_scene: PackedScene
+
 @export var stats: Dictionary[String, float] = {
 	health = 100,
 	max_health = 100,
@@ -51,6 +53,7 @@ var items: Dictionary[String, Dictionary] = {}
 
 var initial_stats = stats
 var was_on_floor = false
+var attack_secondary_locked = false
 
 var facing = Vector2.RIGHT
 
@@ -122,6 +125,9 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("attack_primary"):
 		attack()
+	
+	if Input.is_action_just_pressed("attack_secondary"):
+		attack_secondary()
 	#endregion
 	
 	#region Passive Item Effects
@@ -196,5 +202,21 @@ func attack():
 	sprite.visible = true
 	chosen_slash.visible = false
 	
+func attack_secondary():
+	if attack_secondary_locked:
+		return
 	
+	if not attack_secondary_scene:
+		print("WARN: Player has no secondary attack attached!")
+		return
 	
+	var new_node: Node2D = attack_secondary_scene.instantiate()
+	Util.get_world_root().add_child(new_node)
+	new_node.global_position = global_position
+	new_node.direction = facing
+	_attack_secondary_timeout()
+	
+func _attack_secondary_timeout():
+	attack_secondary_locked = true
+	await get_tree().create_timer(attack_duration).timeout
+	attack_secondary_locked = false

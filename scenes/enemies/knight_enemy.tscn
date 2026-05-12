@@ -15,6 +15,12 @@ radius = 9.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7giku"]
 size = Vector2(16, 21)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2jji"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5803922)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q3lg"]
+bg_color = Color(0.9490196, 0, 0, 0.53333336)
+
 [node name="Enemy" type="CharacterBody2D" unique_id=223010565 node_paths=PackedStringArray("attack_area") groups=["enemy"]]
 collision_layer = 2
 up_direction = Vector2(0, 1)
@@ -52,6 +58,20 @@ script = ExtResource("4_2tlyw")
 position = Vector2(2, 0.5)
 shape = SubResource("RectangleShape2D_7giku")
 debug_color = Color(0.88268113, 0.1831297, 0.69575804, 0.41960785)
+
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=2095986572]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5.5
+offset_top = -14.0
+offset_right = 9.5
+offset_bottom = -12.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_w2jji")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8q3lg")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
