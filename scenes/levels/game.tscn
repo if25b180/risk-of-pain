@@ -153,6 +153,9 @@ sources/1 = SubResource("TileSetAtlasSource_riktp")
 sources/2 = SubResource("TileSetAtlasSource_a1osm")
 sources/0 = SubResource("TileSetAtlasSource_limtx")
 
+[sub_resource type="Theme" id="Theme_fojqs"]
+default_font_size = 6
+
 [node name="Root" type="Node2D" unique_id=847775698]
 
 [node name="ProcedualWorld" type="TileMapLayer" parent="." unique_id=1280201688 node_paths=PackedStringArray("boss_spawner", "player")]
@@ -189,10 +192,11 @@ offset_left = -106.0
 offset_top = -77.0
 offset_right = 101.0
 offset_bottom = -56.0
+theme = SubResource("Theme_fojqs")
 theme_override_constants/icon_margin = 2
 theme_override_font_sizes/font_size = 4
 allow_search = false
-max_columns = 5
+max_columns = 10
 
 [node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player") instance=ExtResource("9_cx7qy")]
 player = NodePath("../Player")
@@ -208,4 +212,4 @@ script = ExtResource("13_6370d")
 position = Vector2(86, 133)
 
 [node name="Item2" parent="." unique_id=1699650358 instance=ExtResource("14_fojqs")]
-position = Vector2(68, 132)
+position = Vector2(66, 131)
