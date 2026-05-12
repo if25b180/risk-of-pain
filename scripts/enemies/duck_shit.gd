@@ -3,8 +3,13 @@ extends Sprite2D
 var shit_damage = 15
 var shit_speed = 2
 var parried = false
+var saved_facing: Vector2 = Vector2.RIGHT
 
 func on_parry():
+	if not Util.get_player():
+		return
+	
+	saved_facing = Util.get_player().facing
 	print("PARRY")
 	parried = true
 
@@ -21,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 	if parried:
 		cancel_free()
 		if Util.get_player():
-			global_position.x += 2 * shit_speed * Util.get_player().facing.x
+			global_position.x += 2 * shit_speed * saved_facing.x
 	else:
 		global_position.y += shit_speed
 
