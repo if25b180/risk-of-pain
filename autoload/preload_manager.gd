@@ -5,3 +5,4 @@ extends Node
 
 var fireball_projectile = preload("uid://dmr1thpwcqyjw")
 var outline_shader = preload("uid://imh3jtr1ndc4")
+var particle_hit = preload("uid://c38yhb0rq765q")

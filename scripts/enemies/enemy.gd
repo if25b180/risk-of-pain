@@ -22,6 +22,8 @@ func _ready():
 
 func hurt(received_damage):
 	health -= received_damage
+	particle_hit_spawn()
+	
 	if health <= 0:
 		if randi_range(0, 100) < item_drop_chance_percent:
 			print(ItemPool.items)
@@ -50,8 +52,6 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 		player_in_focus = null
 
 func apply_fire(duration: float, dps: float) -> void:
-	var timer = get_tree().create_timer(duration)
-	var tick = get_tree().create_timer(1.0)
 	var remaining = duration
 	while remaining > 0:
 		await get_tree().create_timer(1.0).timeout
@@ -62,3 +62,28 @@ func apply_poison(dps: float) -> void:
 	while is_instance_valid(self):
 		await get_tree().create_timer(1.0).timeout
 		hurt(dps)
+
+func particle_hit_spawn():
+	var new_particles: CPUParticles2D = PreloadManager.particle_hit.instantiate()
+	Util.get_world_root().add_child(new_particles)
+	var gravity = new_particles.gravity.x
+	new_particles.gravity = Vector2.ZERO
+	
+	var player = Util.get_player()
+	var dir = (player.global_position - global_position).normalized()
+	# Player is above/below enemy
+	if abs(dir.y) > abs(dir.x):
+		if dir.y < 0:
+			new_particles.gravity.y = gravity
+		else:
+			new_particles.gravity.y = -gravity
+	else: # Player is left/right of enemy
+		if dir.x < 0:
+			new_particles.gravity.x = gravity
+		else:
+			new_particles.gravity.x = -gravity
+
+	new_particles.global_position = global_position
+	new_particles.one_shot = true
+	new_particles.emitting = true
+	new_particles.finished.connect(new_particles.queue_free)

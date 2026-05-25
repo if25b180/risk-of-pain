@@ -10,7 +10,7 @@ enum ItemRarity {
 # public ->
 var items: Array[PackedScene] = []
 var rarity_colors = [
-	Color.WHITE, # NORMAL
+	Color.DIM_GRAY, # NORMAL
 	Color.GREEN_YELLOW, # RARE
 	Color.MEDIUM_VIOLET_RED # LEGENDARY
 ]

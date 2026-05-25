@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c38yhb0rq765q"]
+
+[ext_resource type="Texture2D" uid="uid://mx3otwlm3s1q" path="res://art/particles/blood.png" id="1_ejfb5"]
+
+[node name="Hit" type="CPUParticles2D" unique_id=688692898]
+emitting = false
+texture = ExtResource("1_ejfb5")
+lifetime = 0.3
+one_shot = true
+speed_scale = 1.71
+explosiveness = 0.65
+randomness = 0.55
+emission_shape = 1
+emission_sphere_radius = 13.52
+spread = 9.61
+gravity = Vector2(600, 0)
+hue_variation_min = -1.0
+hue_variation_max = 0.85
