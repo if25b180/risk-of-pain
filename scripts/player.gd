@@ -89,18 +89,19 @@ func _physics_process(_delta):
 	if not is_on_floor():
 		velocity.y += stats.gravity
 	
-	var direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	velocity.x += direction * stats.speed
+	var direction_x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var direction_y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	velocity.x += direction_x * stats.speed
 	
-	if direction != 0:
-		facing.x = direction
+	if direction_x != 0:
+		facing = Vector2(direction_x, direction_y)
 	
 	if Input.is_action_just_pressed("jump"):
 		var has_jumped = is_on_floor() || is_on_wall()
 		if is_on_floor(): # Normal jump
 			velocity.y = stats.jump_force
 		elif is_on_wall(): # Walljump
-			velocity.x = stats.wall_jump_force * direction
+			velocity.x = stats.wall_jump_force * direction_x
 			velocity.y = stats.jump_force
 		
 		# SFX and Animation should happen on either wall jump or normal jump
@@ -113,16 +114,16 @@ func _physics_process(_delta):
 	#endregion
 	
 	#region Animations
-	if direction != 0:
-		sprite.flip_h = direction < 0
-		slash.flip_h = direction < 0
+	if direction_x != 0:
+		sprite.flip_h = direction_x < 0
+		slash.flip_h = direction_x < 0
 		
 		
 	if not is_on_floor():
 		if animation.current_animation != "p_air":
 			animation.play("p_air")
 	else:
-		if direction != 0:
+		if direction_x != 0:
 			if animation.current_animation != "p_run":
 				animation.play("p_run")
 				if is_on_floor():
@@ -133,8 +134,8 @@ func _physics_process(_delta):
 	#endregion
 	
 	#region Attacking
-	if direction != 0:
-		slash_attack_area_collider.position.x = abs(slash_attack_area_collider.position.x) * direction
+	if direction_x != 0:
+		slash_attack_area_collider.position.x = abs(slash_attack_area_collider.position.x) * direction_x
 	
 	if Input.is_action_just_pressed("attack_primary"):
 		attack()
@@ -226,7 +227,15 @@ func attack_secondary():
 	var new_node: Node2D = attack_secondary_scene.instantiate()
 	Util.get_world_root().add_child(new_node)
 	new_node.global_position = global_position
-	new_node.direction = facing
+	
+	new_node.direction.x = facing.x
+	if Input.is_action_pressed("move_down") and not is_on_floor():
+		new_node.direction.x = 0
+		new_node.direction.y = 1
+	if Input.is_action_pressed("move_up"):
+		new_node.direction.x = 0
+		new_node.direction.y = -1
+		
 	_attack_secondary_timeout()
 	
 func _attack_secondary_timeout():

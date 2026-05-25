@@ -10,8 +10,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	
-	global_position.x += speed * direction.x
-	flip_h = (direction.x < 0)
+	global_position += Vector2(direction.x * speed, direction.y * speed)
+	rotation = direction.angle()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is TileMap or body is TileMapLayer:
