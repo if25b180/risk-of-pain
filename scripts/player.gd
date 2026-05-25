@@ -160,15 +160,15 @@ func _physics_process(_delta):
 	
 func item_inventory_ui() -> void:
 	item_list.clear()
-	
+
 	for item_scene in items:
 		var item_data = items[item_scene]
 		var item_counter = "x%d" % item_data.count
-		
-		var list_item = item_list.add_item(item_counter, item_data.item_image)
+
+		var outlined_icon = make_outlined_icon(item_data.item_image, item_data.item_rarity)
+		var list_item = item_list.add_item(item_counter, outlined_icon)
 		item_list.set_item_tooltip(list_item, item_data.item_description)
 		item_list.set_item_selectable(list_item, false)
-	
 
 func attack():
 	if slash.visible \
@@ -233,3 +233,43 @@ func _attack_secondary_timeout():
 	attack_secondary_locked = true
 	await get_tree().create_timer(attack_duration).timeout
 	attack_secondary_locked = false
+
+func make_outlined_icon(source: Texture2D, rarity: int) -> ImageTexture:
+	var color = ItemPool.rarity_colors[rarity]
+	var src_img = source.get_image()
+	
+	# We are drawing the outline on CPU because Godot does NOT support shaders
+	# on individual ItemList entries... -> we need to guarantee a format known by the CPU,
+	# which RGBA8 is
+	src_img.convert(Image.FORMAT_RGBA8)
+
+	# We need to extend the sprite bounds because otherwise the outline gets cut off
+	var padding = 2
+	var new_size = Vector2i(src_img.get_width() + padding * 2, src_img.get_height() + padding * 2)
+	var dst_img = Image.create(new_size.x, new_size.y, false, Image.FORMAT_RGBA8)
+
+	# Draw outline pixels
+	var offsets = [
+		Vector2i(-1, 0), Vector2i(1, 0),
+		Vector2i(0, -1), Vector2i(0, 1),
+	]
+	for x in src_img.get_width():
+		for y in src_img.get_height():
+			var a = src_img.get_pixel(x, y).a
+			if a < 0.01: # Skip (almost) invisible pixels
+				continue
+			
+			for offset in offsets:
+				var offsetx = x + padding + offset.x
+				var offsety = y + padding + offset.y
+				if dst_img.get_pixel(offsetx, offsety).a < 0.01:
+					dst_img.set_pixel(offsetx, offsety, color)
+
+	# Draw original sprite on top
+	for x in src_img.get_width():
+		for y in src_img.get_height():
+			var px = src_img.get_pixel(x, y)
+			if px.a > 0.01:
+				dst_img.set_pixel(x + padding, y + padding, px)
+
+	return ImageTexture.create_from_image(dst_img)

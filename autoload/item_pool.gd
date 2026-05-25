@@ -9,6 +9,11 @@ enum ItemRarity {
 
 # public ->
 var items: Array[PackedScene] = []
+var rarity_colors = [
+	Color.WHITE, # NORMAL
+	Color.GREEN_YELLOW, # RARE
+	Color.MEDIUM_VIOLET_RED # LEGENDARY
+]
 
 func get_random_item():
 	print("item random get")

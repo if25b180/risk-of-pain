@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://bs1ad6nwcpkoo"]
 
 [ext_resource type="Script" uid="uid://gi0nxhfud0q4" path="res://scripts/items/base/item.gd" id="1_5uh1b"]
+[ext_resource type="Shader" uid="uid://imh3jtr1ndc4" path="res://shaders/item_outline.gdshader" id="1_jjora"]
 [ext_resource type="Texture2D" uid="uid://bp6gdevk1fawv" path="res://art/items/speed_boost.png" id="2_jgeia"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjora"]
+shader = ExtResource("1_jjora")
+shader_parameter/flat_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fat2f"]
 size = Vector2(10, 10)
@@ -10,7 +15,9 @@ size = Vector2(10, 10)
 script = ExtResource("1_5uh1b")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=16991366]
+material = SubResource("ShaderMaterial_jjora")
 texture = ExtResource("2_jgeia")
+region_rect = Rect2(0, 0, 8.96, 9.015)
 
 [node name="PickupArea" type="Area2D" parent="." unique_id=1241392619]
 

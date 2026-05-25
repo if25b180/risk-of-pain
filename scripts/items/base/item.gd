@@ -17,14 +17,46 @@ var timer = 0
 var start_y = -1
 var start_y_isset = false
 
+#region Outline
+var outline_width = 1
+var outline_sprites: Array[Sprite2D] = []
+var outline_offsets = [
+	Vector2(-1, 0), Vector2(1, 0), # left, right
+	Vector2(0, -1), Vector2(0, 1), # up, down
+]
+#endregion
+
 func _ready():
 	item_image = sprite_2d.texture
+	sprite_2d.visible = false
 	
 	if not item_script:
 		print(item_name, " does not have a Item Script .gd attached to it")
 		return
 		
 	item_script_instance = item_script.new()
+	
+	#region Outline
+	for outline_offset in outline_offsets:
+		var sprite = Sprite2D.new()
+		sprite.texture = item_image
+		sprite.position = outline_offset * outline_width
+		sprite.z_index = z_index - 1
+
+		var mat = ShaderMaterial.new()
+		mat.shader = PreloadManager.outline_shader
+		mat.set_shader_parameter("flat_color", ItemPool.rarity_colors[item_rarity])
+		sprite.material = mat
+
+		add_child(sprite)
+		outline_sprites.append(sprite)
+		
+	# Main sprite on top
+	var main_sprite = Sprite2D.new()
+	main_sprite.texture = item_image
+	main_sprite.z_index = z_index  # in front of outline sprites
+	add_child(main_sprite)
+	#endregion
 	
 func _physics_process(delta):
 	if not start_y_isset:
@@ -34,6 +66,7 @@ func _physics_process(delta):
 	timer += delta
 	var bop_y = 2.0
 	global_position.y = start_y + sin(timer * 2.0) * bop_y
+
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:
 	if not item_image or not item_script_instance:
@@ -66,7 +99,8 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 			passive_hook = item_on_passive,
 			item_image = item_image,
 			item_name = item_name,
-			item_description = item_description
+			item_description = item_description,
+			item_rarity = item_rarity,
 		}
 	else:
 		player.items[item_scene].count += 1
