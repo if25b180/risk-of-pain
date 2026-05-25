@@ -9,8 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/enemies/boss_spawner.tscn" id="9_cx7qy"]
 [ext_resource type="PackedScene" uid="uid://ds080rdwls3su" path="res://scenes/enemies/boss.tscn" id="11_6370d"]
 [ext_resource type="PackedScene" uid="uid://cqbcj4tqdyhxu" path="res://scenes/menu/main_menu.tscn" id="11_r0gsk"]
+[ext_resource type="PackedScene" uid="uid://nwvyxnjlvrbt" path="res://scenes/items/pickups/burn_debuff.tscn" id="12_15o36"]
+[ext_resource type="PackedScene" uid="uid://b0hfsc3rsi4f1" path="res://scenes/items/pickups/cloud.tscn" id="13_02t1k"]
 [ext_resource type="Script" uid="uid://bnbswquk3gwal" path="res://scripts/controller.gd" id="13_6370d"]
 [ext_resource type="PackedScene" uid="uid://x80idmqfq6tx" path="res://scenes/items/pickups/feather.tscn" id="14_fojqs"]
+[ext_resource type="PackedScene" uid="uid://4rueg8bmlxa1" path="res://scenes/items/pickups/damage_primary_increase.tscn" id="14_hilwk"]
+[ext_resource type="PackedScene" uid="uid://b1ilpx8uk56me" path="res://scenes/items/pickups/dash.tscn" id="15_v80qm"]
+[ext_resource type="PackedScene" uid="uid://baafa5v0qapxx" path="res://scenes/items/pickups/fireball.tscn" id="16_fqlro"]
+[ext_resource type="PackedScene" uid="uid://csi1lk52rsygb" path="res://scenes/items/pickups/healthplus.tscn" id="17_tb13f"]
+[ext_resource type="PackedScene" uid="uid://ojjqq2c1633s" path="res://scenes/items/pickups/poison_debuff.tscn" id="18_i73dc"]
+[ext_resource type="PackedScene" uid="uid://dupst2bitxjlp" path="res://scenes/items/pickups/speed.tscn" id="19_1w27a"]
+[ext_resource type="PackedScene" uid="uid://cm3aoy3rb3em2" path="res://scenes/items/pickups/syringe.tscn" id="20_dponv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -203,7 +212,100 @@ visible = false
 script = ExtResource("13_6370d")
 
 [node name="Item" parent="." unique_id=1363583896 instance=ExtResource("14_fojqs")]
-position = Vector2(86, 133)
+position = Vector2(19, 77)
 
-[node name="Item2" parent="." unique_id=1699650358 instance=ExtResource("14_fojqs")]
-position = Vector2(66, 131)
+[node name="Item3" parent="." unique_id=2035134327 instance=ExtResource("12_15o36")]
+position = Vector2(20, 32)
+
+[node name="Item4" parent="." unique_id=1455907646 instance=ExtResource("13_02t1k")]
+position = Vector2(19, 96)
+
+[node name="Item5" parent="." unique_id=1719471970 instance=ExtResource("14_hilwk")]
+position = Vector2(38, 48)
+
+[node name="Item6" parent="." unique_id=706469667 instance=ExtResource("15_v80qm")]
+position = Vector2(37, 95)
+
+[node name="Item8" parent="." unique_id=1296159160 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item7" parent="." unique_id=876563017 instance=ExtResource("17_tb13f")]
+position = Vector2(18, 110)
+
+[node name="Item9" parent="." unique_id=2063606827 instance=ExtResource("18_i73dc")]
+position = Vector2(38, 32)
+
+[node name="Item10" parent="." unique_id=528359135 instance=ExtResource("19_1w27a")]
+position = Vector2(37, 77)
+
+[node name="Item11" parent="." unique_id=150076902 instance=ExtResource("20_dponv")]
+position = Vector2(37, 110)
+
+[node name="Item12" parent="." unique_id=270395462 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item13" parent="." unique_id=1044713490 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item14" parent="." unique_id=1848429197 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item15" parent="." unique_id=481187197 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item16" parent="." unique_id=331013769 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item17" parent="." unique_id=875181684 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item18" parent="." unique_id=2038219908 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item19" parent="." unique_id=907508195 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item20" parent="." unique_id=837156798 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item21" parent="." unique_id=1837603453 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item22" parent="." unique_id=723482037 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item23" parent="." unique_id=1601887592 instance=ExtResource("16_fqlro")]
+position = Vector2(19, 47)
+
+[node name="Item24" parent="." unique_id=929091947 instance=ExtResource("15_v80qm")]
+position = Vector2(37, 95)
+
+[node name="Item25" parent="." unique_id=2060622532 instance=ExtResource("15_v80qm")]
+position = Vector2(37, 95)
+
+[node name="Item26" parent="." unique_id=1048006508 instance=ExtResource("15_v80qm")]
+position = Vector2(37, 95)
+
+[node name="Item27" parent="." unique_id=1509409200 instance=ExtResource("15_v80qm")]
+position = Vector2(37, 95)
+
+[node name="Item28" parent="." unique_id=1380219122 instance=ExtResource("15_v80qm")]
+position = Vector2(37, 95)
+
+[node name="Item29" parent="." unique_id=104406820 instance=ExtResource("15_v80qm")]
+position = Vector2(37, 95)
+
+[node name="Item2" parent="." unique_id=1456427000 instance=ExtResource("14_fojqs")]
+position = Vector2(19, 77)
+
+[node name="Item30" parent="." unique_id=1134271195 instance=ExtResource("14_fojqs")]
+position = Vector2(19, 77)
+
+[node name="Item31" parent="." unique_id=1931905206 instance=ExtResource("14_fojqs")]
+position = Vector2(19, 77)
+
+[node name="Item32" parent="." unique_id=847211390 instance=ExtResource("14_fojqs")]
+position = Vector2(19, 77)
+
+[node name="Item33" parent="." unique_id=1384858973 instance=ExtResource("14_fojqs")]
+position = Vector2(19, 77)

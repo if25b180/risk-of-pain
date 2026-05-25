@@ -5,12 +5,18 @@ var shit_speed = 2
 var parried = false
 var saved_facing: Vector2 = Vector2.RIGHT
 
+#region SFX
+@onready var parry_sfx: AudioStreamPlayer2D = $ParrySound
+#endregion
+
+
 func on_parry():
 	if not Util.get_player():
 		return
 	
 	saved_facing = Util.get_player().facing
 	print("PARRY")
+	parry_sfx.play()
 	parried = true
 
 func _physics_process(_delta: float) -> void:

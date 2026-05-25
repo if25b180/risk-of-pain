@@ -17,6 +17,10 @@ var fly_speed = randf_range(fly_speed_range.min, fly_speed_range.max)
 
 var timer = 0
 
+#region SFX
+@onready var shit_spawn_sfx: AudioStreamPlayer2D = $PoopSound
+#endregion
+
 func _ready():
 	$Sprite2D.flip_h = true
 	animation_player.play("DuckFlying")
@@ -28,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		var new_node: Node2D = shit_scene.instantiate()
 		Util.get_world_root().add_child(new_node)
 		new_node.global_position = global_position
+		shit_spawn_sfx.play()
 	
 	if start_global_position == null:
 		start_global_position = global_position

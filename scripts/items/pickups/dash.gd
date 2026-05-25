@@ -18,6 +18,7 @@ func on_passive(player: Player, _item_count):
 	if allow_dash and not dash_on_cooldown and Input.is_action_just_pressed("dash"):
 		print("DASH!")
 		player.velocity.x = dash_force * horizontal
+		player.dash_sfx.play()
 		allow_dash = false
 		_dash_cooldown()
 		

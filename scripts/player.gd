@@ -27,6 +27,11 @@ class_name Player
 @onready var jump_sfx: AudioStreamPlayer2D = $JumpSound
 @onready var walk_sfx: AudioStreamPlayer2D = $WalkSound
 @onready var hurt_sfx: AudioStreamPlayer2D = $HurtSound
+@onready var swing_sfx: AudioStreamPlayer2D = $SwingSound
+@onready var bow_sfx: AudioStreamPlayer2D = $BowSound
+@onready var pickup_sfx: AudioStreamPlayer2D = $PickupSound
+@onready var fireball_sfx: AudioStreamPlayer2D = $FireBallSound
+@onready var dash_sfx: AudioStreamPlayer2D = $DashSound
 #endregion
 
 @export var world_min_y: int = -500
@@ -60,6 +65,7 @@ var chosen_slash = slash # left and right
 var chosen_slash_area = slash_attack_area
 
 var facing = Vector2.RIGHT
+var jump_count = 0
 
 func reset_stats():
 	stats = initial_stats
@@ -96,6 +102,9 @@ func _physics_process(_delta):
 	if direction_x != 0:
 		facing = Vector2(direction_x, direction_y)
 	
+	if is_on_floor():
+		jump_count = 0
+	
 	if Input.is_action_just_pressed("jump"):
 		var has_jumped = is_on_floor() || is_on_wall()
 		if is_on_floor(): # Normal jump
@@ -107,6 +116,8 @@ func _physics_process(_delta):
 		# SFX and Animation should happen on either wall jump or normal jump
 		if has_jumped:
 			animation.play("p_jump")
+			jump_sfx.pitch_scale = 0.8 + (jump_count - 1) * 0.1
+			jump_count += 1
 			jump_sfx.play()
 	
 	if Input.is_action_just_released("jump") and velocity.y < 0:
@@ -177,6 +188,8 @@ func attack():
 			or slash_up.visible:
 		return
 	
+	swing_sfx.play()
+	
 	chosen_slash = slash # left and right
 	chosen_slash_area = slash_attack_area
 	if Input.is_action_pressed("move_down") and not is_on_floor():
@@ -223,6 +236,8 @@ func attack_secondary():
 	if not attack_secondary_scene:
 		print("WARN: Player has no secondary attack attached!")
 		return
+	
+	bow_sfx.play()
 	
 	var new_node: Node2D = attack_secondary_scene.instantiate()
 	Util.get_world_root().add_child(new_node)

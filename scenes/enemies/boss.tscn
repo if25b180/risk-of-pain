@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://ds080rdwls3su"]
 
-[ext_resource type="Script" uid="uid://c0v4555mrgdyf" path="res://scripts/enemies/boss.gd" id="1_neq0i"]
+[ext_resource type="Script" path="res://scripts/enemies/boss.gd" id="1_neq0i"]
 [ext_resource type="Texture2D" uid="uid://bmhy5pcvc62n1" path="res://art/enemy_assets/boss.png" id="2_neq0i"]
 [ext_resource type="Texture2D" uid="uid://dn40o3hgm5lt0" path="res://art/enemy_assets/boss_attack.png" id="3_qnbj4"]
 [ext_resource type="Script" uid="uid://d1pgfnsfhb45k" path="res://scripts/enemies/miscellaneous/enemy_hitbox.gd" id="4_2cdgk"]
+[ext_resource type="AudioStream" uid="uid://ba6qkpu4qtc6e" path="res://sounds/EnemyDamage.wav" id="5_yye4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3bxh"]
 size = Vector2(32, 63)
@@ -71,6 +72,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ian0n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yye4w")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="Hurt_Enemy" type="AudioStreamPlayer2D" parent="." unique_id=731285734]
+stream = ExtResource("5_yye4w")
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

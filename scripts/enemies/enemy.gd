@@ -10,6 +10,10 @@ class_name Enemy
 var player_in_focus = null
 var max_health: float = health
 
+#region SFX
+@onready var hurt_enemy_sfx: AudioStreamPlayer2D = $Hurt_Enemy
+#endregion
+
 func _physics_process(_delta: float) -> void:
 	var healthbar: ProgressBar = $Healthbar
 	if healthbar:
@@ -22,6 +26,7 @@ func _ready():
 
 func hurt(received_damage):
 	health -= received_damage
+	hurt_enemy_sfx.play()
 	particle_hit_spawn()
 	
 	if health <= 0:

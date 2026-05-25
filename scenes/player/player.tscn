@@ -10,6 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://docvmk0r0ybkc" path="res://sounds/walk.ogg" id="6_fjrip"]
 [ext_resource type="AudioStream" uid="uid://b177s3nssiaib" path="res://sounds/PlayerDamage.wav" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://cqqi0k8cot6qo" path="res://art/player_assets/player_slash_down.png" id="6_y4r1p"]
+[ext_resource type="AudioStream" uid="uid://c2wa7mnne5ir6" path="res://sounds/SwordSwing.wav" id="11_je7p5"]
+[ext_resource type="AudioStream" uid="uid://cjb26ecyxhlu6" path="res://sounds/Shoot3.wav" id="12_fm80t"]
+[ext_resource type="AudioStream" uid="uid://el4fweyvnc4x" path="res://sounds/Pickup.wav" id="13_gx1jg"]
+[ext_resource type="AudioStream" uid="uid://dv6jjo207sft1" path="res://sounds/FireBallAttack.wav" id="14_ugbui"]
+[ext_resource type="AudioStream" uid="uid://dcdvqr01pyinf" path="res://sounds/Dash.wav" id="15_fcs02"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
 shader = ExtResource("1_qhqgy")
@@ -219,6 +224,21 @@ stream = ExtResource("6_fjrip")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1842459668]
 stream = ExtResource("6_tuyoq")
+
+[node name="SwingSound" type="AudioStreamPlayer2D" parent="." unique_id=1589419454]
+stream = ExtResource("11_je7p5")
+
+[node name="BowSound" type="AudioStreamPlayer2D" parent="." unique_id=1895337119]
+stream = ExtResource("12_fm80t")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=486493277]
+stream = ExtResource("13_gx1jg")
+
+[node name="FireBallSound" type="AudioStreamPlayer2D" parent="." unique_id=2058666160]
+stream = ExtResource("14_ugbui")
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="." unique_id=2128373401]
+stream = ExtResource("15_fcs02")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1858952545]
 anchors_preset = 5

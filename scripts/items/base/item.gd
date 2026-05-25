@@ -108,4 +108,6 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 	player.item_inventory_ui()
 	#endregion
 	
+	player.pickup_sfx.play()
+	
 	queue_free()

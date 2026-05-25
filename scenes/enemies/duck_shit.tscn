@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://irrhkit0km8l" path="res://art/enemy_assets/duck_shit.png" id="1_7reff"]
 [ext_resource type="Script" uid="uid://dyrigptvldlay" path="res://scripts/enemies/duck_shit.gd" id="2_brjla"]
+[ext_resource type="AudioStream" uid="uid://d2p2ptf82mua6" path="res://sounds/Parry.wav" id="3_brjla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yob3x"]
 size = Vector2(7, 5)
@@ -15,5 +16,8 @@ script = ExtResource("2_brjla")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1547675809]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_yob3x")
+
+[node name="ParrySound" type="AudioStreamPlayer2D" parent="." unique_id=1542616005]
+stream = ExtResource("3_brjla")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

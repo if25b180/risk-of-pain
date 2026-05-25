@@ -8,4 +8,4 @@ func on_player_attack_primary(player: Player, own_item_count: int):
 		fireball_projectile.default_direction = player.facing
 		Util.get_world_root().add_child(fireball_projectile)
 		fireball_projectile.global_position = player.global_position
-		
+		player.fireball_sfx.play()

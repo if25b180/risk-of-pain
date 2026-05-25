@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dp4lvis3ca80y" path="res://art/enemy_assets/duck.png" id="2_tils5"]
 [ext_resource type="PackedScene" uid="uid://diwqvxyixd35o" path="res://scenes/enemies/duck_shit.tscn" id="2_xcse6"]
 [ext_resource type="Script" uid="uid://d1pgfnsfhb45k" path="res://scripts/enemies/miscellaneous/enemy_hitbox.gd" id="3_ircvx"]
+[ext_resource type="AudioStream" uid="uid://bn5wipf81jmvv" path="res://sounds/quack.mp3" id="5_3sq7w"]
+[ext_resource type="AudioStream" uid="uid://b3pxc4g4nhfsr" path="res://sounds/poop.wav" id="6_8bdxm"]
 
 [sub_resource type="Animation" id="Animation_ircvx"]
 resource_name = "DuckFlying"
@@ -93,3 +95,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_xcse6")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3sq7w")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="Hurt_Enemy" type="AudioStreamPlayer2D" parent="." unique_id=67342906]
+stream = ExtResource("5_3sq7w")
+
+[node name="PoopSound" type="AudioStreamPlayer2D" parent="." unique_id=1490690417]
+stream = ExtResource("6_8bdxm")
