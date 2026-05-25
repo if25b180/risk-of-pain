@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://tnrefuipy5d1"]
+
+[ext_resource type="Texture2D" uid="uid://dgt343ich3q5p" path="res://art/environment/boulder.png" id="1_r3bet"]
+
+[node name="Tree" type="Node2D" unique_id=374738399]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1397585451]
+z_index = -10
+position = Vector2(1, -11)
+texture = ExtResource("1_r3bet")

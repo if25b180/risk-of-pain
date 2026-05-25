@@ -11,14 +11,11 @@ extends TileMapLayer
 @export var player: CharacterBody2D
 
 #region Random Node Spawns
-@export var tree_scene: PackedScene
 @export var tree_chance: int = 30
-
-@export var enemy_scene: PackedScene
 @export var enemy_chance: int = 10
-
-@export var duck_scene: PackedScene
 @export var duck_chance: int = 10
+@export var pillar_chance: int = 10
+@export var boulder_chance: int = 15
 #endregion
 
 var chunk_count = 0
@@ -62,9 +59,14 @@ func generate_next_chunk():
 	floor_current_y += randi_range(y_jump_range_min, y_jump_range_max)
 	floor_current_y = clamp(floor_current_y, floor_min_y, floor_max_y)
 	
-	node_chance(tree_scene, tree_chance, 3)
-	node_chance(enemy_scene, enemy_chance, 2, Vector2(0, -50))
-	node_chance(duck_scene, duck_chance, 2, Vector2(0, -100))
+	# Spawning stuff in first 2 chunks is risky... player might get stuck
+	if chunk_count > 1:
+		node_chance(PreloadManager.tree_structure, tree_chance, 3)
+		node_chance(PreloadManager.knight_enemy, enemy_chance, 2, Vector2(0, -50))
+		node_chance(PreloadManager.duck_enemy, duck_chance, 2, Vector2(0, -100))
+		for i in range(2):
+			node_chance(PreloadManager.pillar_structure, pillar_chance * 0.5, 3, Vector2(0, randi_range(0, 80)))
+		node_chance(PreloadManager.boulder_structure, boulder_chance, 3)
 	
 	for i in range(chunk_width):
 		var current_x = chunk_count * chunk_width + i

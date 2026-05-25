@@ -27,15 +27,16 @@ func get_random_item():
 	
 	# TODO: Maybe make this a more efficient algorithm
 	var chosen_item: PackedScene = items.pick_random()
+	# We only need to instantiate to get its item rarity
 	var chosen_item_instance: Item = chosen_item.instantiate()
 	var retries = 100
 	while chosen_item_instance.item_rarity != chosen_rarity:
 		if retries <= 0:
 			break
 		
-		chosen_item = items.pick_random()
-		
 		chosen_item_instance.free() # Immediate free as to not execute its code
+		
+		chosen_item = items.pick_random()
 		chosen_item_instance = chosen_item.instantiate()
 		
 		retries -= 1

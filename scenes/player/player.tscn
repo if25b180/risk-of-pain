@@ -151,6 +151,7 @@ bg_color = Color(0.9490196, 0, 0, 0.53333336)
 
 [node name="Player" type="CharacterBody2D" unique_id=1588611632 groups=["player"]]
 material = SubResource("ShaderMaterial_dqkch")
+collision_mask = 5
 script = ExtResource("1_rggrj")
 attack_secondary_scene = ExtResource("3_h17s1")
 metadata/_edit_group_ = true

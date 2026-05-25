@@ -5,13 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bdot5acjfjokp" path="res://art/tilesets/test_grass_tile.png" id="1_riktp"]
 [ext_resource type="PackedScene" uid="uid://c17kd3vgyjnyj" path="res://scenes/player/player.tscn" id="2_eqihu"]
 [ext_resource type="Script" uid="uid://6amtf8nu5iur" path="res://scripts/procedual_world.gd" id="4_7rg7d"]
-[ext_resource type="PackedScene" uid="uid://uliaxnllbgym" path="res://scenes/tree.tscn" id="5_uk881"]
-[ext_resource type="PackedScene" uid="uid://cpers5gp5gjif" path="res://scenes/enemies/duck.tscn" id="7_7rg7d"]
 [ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scripts/camera_2d.gd" id="8_xmnyv"]
 [ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/enemies/boss_spawner.tscn" id="9_cx7qy"]
 [ext_resource type="PackedScene" uid="uid://ds080rdwls3su" path="res://scenes/enemies/boss.tscn" id="11_6370d"]
 [ext_resource type="PackedScene" uid="uid://cqbcj4tqdyhxu" path="res://scenes/menu/main_menu.tscn" id="11_r0gsk"]
-[ext_resource type="PackedScene" uid="uid://dcx1xdqyauqko" path="res://scenes/enemies/knight_enemy.tscn" id="12_oi2tv"]
 [ext_resource type="Script" uid="uid://bnbswquk3gwal" path="res://scripts/controller.gd" id="13_6370d"]
 [ext_resource type="PackedScene" uid="uid://x80idmqfq6tx" path="res://scenes/items/pickups/feather.tscn" id="14_fojqs"]
 
@@ -167,11 +164,8 @@ script = ExtResource("4_7rg7d")
 floor_min_y = 20
 boss_spawner = NodePath("../BossSpawner")
 player = NodePath("../Player")
-tree_scene = ExtResource("5_uk881")
 tree_chance = 40
-enemy_scene = ExtResource("12_oi2tv")
 enemy_chance = 30
-duck_scene = ExtResource("7_7rg7d")
 duck_chance = 40
 
 [node name="Player" parent="." unique_id=1588611632 instance=ExtResource("2_eqihu")]
