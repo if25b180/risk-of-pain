@@ -98,6 +98,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Hurt_Enemy" type="AudioStreamPlayer2D" parent="." unique_id=67342906]
 stream = ExtResource("5_3sq7w")
+volume_db = -10.0
 
 [node name="PoopSound" type="AudioStreamPlayer2D" parent="." unique_id=1490690417]
 stream = ExtResource("6_8bdxm")

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bdot5acjfjokp" path="res://art/tilesets/test_grass_tile.png" id="1_riktp"]
 [ext_resource type="PackedScene" uid="uid://c17kd3vgyjnyj" path="res://scenes/player/player.tscn" id="2_eqihu"]
 [ext_resource type="Script" uid="uid://6amtf8nu5iur" path="res://scripts/procedual_world.gd" id="4_7rg7d"]
+[ext_resource type="FontFile" uid="uid://c6bbvunckc86n" path="res://fonts/PixelOperatorMono.ttf" id="7_02t1k"]
 [ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scripts/camera_2d.gd" id="8_xmnyv"]
 [ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/enemies/boss_spawner.tscn" id="9_cx7qy"]
 [ext_resource type="PackedScene" uid="uid://ds080rdwls3su" path="res://scenes/enemies/boss.tscn" id="11_6370d"]
@@ -160,6 +161,7 @@ sources/2 = SubResource("TileSetAtlasSource_a1osm")
 sources/0 = SubResource("TileSetAtlasSource_limtx")
 
 [sub_resource type="Theme" id="Theme_fojqs"]
+default_font = ExtResource("7_02t1k")
 default_font_size = 6
 
 [node name="Root" type="Node2D" unique_id=847775698]

@@ -2,13 +2,26 @@
 
 [ext_resource type="Script" uid="uid://rdfjnopki6u4" path="res://scripts/menu/main_menu.gd" id="1_3rkf3"]
 [ext_resource type="Texture2D" uid="uid://cevb1qo1jmfqo" path="res://art/environment/background.png" id="1_nl8w3"]
+[ext_resource type="FontFile" uid="uid://cgiw6ku72574g" path="res://fonts/PixelOperator.ttf" id="1_vovv2"]
 [ext_resource type="Texture2D" uid="uid://bts8vw0gj72ie" path="res://art/menu_assets/menu_flag.png" id="3_247la"]
+[ext_resource type="Shader" uid="uid://47fmhpk44v04" path="res://shaders/item_flow.gdshader" id="3_qgo02"]
 [ext_resource type="Script" uid="uid://nr53iafjmhud" path="res://scripts/menu/fullscreen_control.gd" id="4_kiqgm"]
+[ext_resource type="Texture2D" uid="uid://bgpalo6kjm4gg" path="res://art/menu_assets/item_flow.png" id="4_vovv2"]
 [ext_resource type="Script" uid="uid://cew1q6o4h3xeb" path="res://scripts/menu/screen_resolution.gd" id="5_hj162"]
 [ext_resource type="Script" uid="uid://ccmqto1nn40la" path="res://scripts/menu/audio_control.gd" id="5_xn6kt"]
 
+[sub_resource type="Theme" id="Theme_1k4da"]
+default_font = ExtResource("1_vovv2")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3rkf3"]
 texture = ExtResource("1_nl8w3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgo02"]
+bg_color = Color(0.8646233, 0.4912343, 0.16926464, 0.27450982)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1k4da"]
+shader = ExtResource("3_qgo02")
+shader_parameter/speed = 0.1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kiqgm"]
 texture = ExtResource("3_247la")
@@ -30,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_1k4da")
 script = ExtResource("1_3rkf3")
 
 [node name="backgorund" type="Panel" parent="." unique_id=1000340531]
@@ -40,6 +54,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_3rkf3")
+
+[node name="Panel" type="Panel" parent="." unique_id=2085786100]
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qgo02")
+
+[node name="ItemFlow" type="Sprite2D" parent="." unique_id=653919480]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_1k4da")
+position = Vector2(160, 89)
+texture = ExtResource("4_vovv2")
 
 [node name="logo" type="Panel" parent="." unique_id=2146977713]
 layout_mode = 1
