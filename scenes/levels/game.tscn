@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ojjqq2c1633s" path="res://scenes/items/pickups/poison_debuff.tscn" id="18_i73dc"]
 [ext_resource type="PackedScene" uid="uid://dupst2bitxjlp" path="res://scenes/items/pickups/speed.tscn" id="19_1w27a"]
 [ext_resource type="PackedScene" uid="uid://cm3aoy3rb3em2" path="res://scenes/items/pickups/syringe.tscn" id="20_dponv"]
+[ext_resource type="PackedScene" uid="uid://bl50q7h00e0d8" path="res://scenes/items/pickups/thorns.tscn" id="21_02t1k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -311,3 +312,12 @@ position = Vector2(19, 77)
 
 [node name="Item33" parent="." unique_id=1384858973 instance=ExtResource("14_fojqs")]
 position = Vector2(19, 77)
+
+[node name="Item34" parent="." unique_id=1088967038 instance=ExtResource("21_02t1k")]
+position = Vector2(82, 9)
+
+[node name="Item35" parent="." unique_id=969930724 instance=ExtResource("21_02t1k")]
+position = Vector2(67, 9)
+
+[node name="Item36" parent="." unique_id=912583815 instance=ExtResource("21_02t1k")]
+position = Vector2(56, 47)

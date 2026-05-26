@@ -35,7 +35,7 @@ func _physics_process(delta):
 		move_and_slide()
 		
 		if player_in_focus and not already_attacked:
-			player_in_focus.hurt(damage)
+			player_in_focus.hurt(damage, self)
 			already_attacked = true
 		
 		return

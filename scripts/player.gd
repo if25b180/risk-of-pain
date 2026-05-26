@@ -52,6 +52,7 @@ class_name Player
 	wall_jump_force = -300,
 	pogo_force = -300,
 	parry_force = 300,
+	thorns_damage = 0
 }
 
 # String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
@@ -79,6 +80,9 @@ func hurt(damage, damager: Node = null):
 			damager.on_parry()
 		
 		return
+	
+	if damager and damager.has_method("hurt") and stats.thorns_damage > 0:
+		damager.hurt(stats.thorns_damage)
 	
 	hurt_sfx.play()
 	stats.health -= damage
