@@ -34,7 +34,7 @@ class_name Player
 @onready var dash_sfx: AudioStreamPlayer2D = $DashSound
 #endregion
 
-@export var world_min_y: int = -500
+@export var world_min_y: int = -1500
 @export var attack_duration: float = 0.4
 
 @export var attack_secondary_scene: PackedScene
