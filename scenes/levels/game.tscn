@@ -165,6 +165,17 @@ sources/0 = SubResource("TileSetAtlasSource_limtx")
 default_font = ExtResource("7_02t1k")
 default_font_size = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hilwk"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 0.27058825)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v80qm"]
+
 [node name="Root" type="Node2D" unique_id=847775698]
 
 [node name="ProcedualWorld" type="TileMapLayer" parent="." unique_id=1280201688 node_paths=PackedStringArray("boss_spawner", "player")]
@@ -197,10 +208,15 @@ texture_filter = 1
 offset_left = -106.0
 offset_top = -77.0
 offset_right = 101.0
-offset_bottom = -53.0
+offset_bottom = -60.0
 theme = SubResource("Theme_fojqs")
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+theme_override_constants/outline_size = 1
 theme_override_constants/icon_margin = 2
 theme_override_font_sizes/font_size = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_hilwk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_v80qm")
 allow_search = false
 max_columns = 10
 

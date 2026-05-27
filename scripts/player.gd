@@ -185,7 +185,11 @@ func item_inventory_ui() -> void:
 		var list_item = item_list.add_item(item_counter, outlined_icon)
 		item_list.set_item_tooltip(list_item, item_data.item_description)
 		item_list.set_item_selectable(list_item, false)
-
+		
+	var item_count = item_list.item_count
+	if item_count > 10:
+		item_list.custom_minimum_size.y = 30
+		
 func attack():
 	if slash.visible \
 			or slash_down.visible \

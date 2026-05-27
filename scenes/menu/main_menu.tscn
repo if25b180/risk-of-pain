@@ -170,12 +170,17 @@ theme_override_font_sizes/font_size = 7
 script = ExtResource("5_hj162")
 
 [node name="Label" type="Label" parent="settings" unique_id=1023231451]
-layout_mode = 0
-offset_left = 76.0
-offset_top = -4.5
-offset_right = 138.0
-offset_bottom = 18.5
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_right = 31.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
 text = "Settings"
+uppercase = true
 
 [node name="back_to_main" type="Button" parent="settings/Label" unique_id=1282055135]
 texture_filter = 1
