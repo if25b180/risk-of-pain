@@ -6,9 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://c17kd3vgyjnyj" path="res://scenes/player/player.tscn" id="2_eqihu"]
 [ext_resource type="Script" uid="uid://6amtf8nu5iur" path="res://scripts/procedual_world.gd" id="4_7rg7d"]
 [ext_resource type="FontFile" uid="uid://c6bbvunckc86n" path="res://fonts/PixelOperatorMono.ttf" id="7_02t1k"]
+[ext_resource type="Shader" uid="uid://dbrl81m8ay8kr" path="res://shaders/background_flow_links.gdshader" id="8_fqlro"]
 [ext_resource type="Script" uid="uid://x5e3tdafl70a" path="res://scripts/camera_2d.gd" id="8_xmnyv"]
 [ext_resource type="PackedScene" uid="uid://dajy2mhlmjfoj" path="res://scenes/enemies/boss_spawner.tscn" id="9_cx7qy"]
+[ext_resource type="Texture2D" uid="uid://bfxlb8f47vepw" path="res://art/environment/clouds_PLACEHOLDER.png" id="9_fqlro"]
+[ext_resource type="Shader" uid="uid://crmuvph4dxcfl" path="res://shaders/background_flow_rechts.gdshader" id="10_i73dc"]
 [ext_resource type="PackedScene" uid="uid://ds080rdwls3su" path="res://scenes/enemies/boss.tscn" id="11_6370d"]
+[ext_resource type="Texture2D" uid="uid://wmjscoovt678" path="res://art/environment/hills_PLACEHOLDER.png" id="11_i73dc"]
 [ext_resource type="PackedScene" uid="uid://cqbcj4tqdyhxu" path="res://scenes/menu/main_menu.tscn" id="11_r0gsk"]
 [ext_resource type="PackedScene" uid="uid://nwvyxnjlvrbt" path="res://scenes/items/pickups/burn_debuff.tscn" id="12_15o36"]
 [ext_resource type="PackedScene" uid="uid://b0hfsc3rsi4f1" path="res://scenes/items/pickups/cloud.tscn" id="13_02t1k"]
@@ -176,6 +180,23 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v80qm"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dponv"]
+shader = ExtResource("10_i73dc")
+shader_parameter/speed = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1w27a"]
+shader = ExtResource("8_fqlro")
+shader_parameter/speed = 0.08
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i73dc"]
+shader = ExtResource("8_fqlro")
+shader_parameter/speed = 0.1
+shader_parameter/tint = Color(0.64328, 0.6072, 0.66, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i73dc"]
+load_path = "res://.godot/imported/mountain_PLACEHOLDER.png-77d8b25a8d34c81deed126d37fcb6a0d.ctex"
+
 [node name="Root" type="Node2D" unique_id=847775698]
 
 [node name="ProcedualWorld" type="TileMapLayer" parent="." unique_id=1280201688 node_paths=PackedStringArray("boss_spawner", "player")]
@@ -219,6 +240,30 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hilwk")
 theme_override_styles/focus = SubResource("StyleBoxFlat_v80qm")
 allow_search = false
 max_columns = 10
+
+[node name="HillsPlaceholder" type="Sprite2D" parent="Camera2D" unique_id=389047233]
+z_index = -14
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dponv")
+texture = ExtResource("11_i73dc")
+
+[node name="CloudsPlaceholder" type="Sprite2D" parent="Camera2D" unique_id=5332720]
+z_index = -19
+material = SubResource("ShaderMaterial_1w27a")
+position = Vector2(9.804411, -31.559242)
+rotation = 0.12391838
+scale = Vector2(1.1493193, 1.1493193)
+skew = -0.497419
+texture = ExtResource("9_fqlro")
+
+[node name="Mountain" type="Sprite2D" parent="Camera2D" unique_id=1986495172]
+z_index = -18
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_i73dc")
+position = Vector2(0, 1)
+texture = SubResource("CompressedTexture2D_i73dc")
 
 [node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player") instance=ExtResource("9_cx7qy")]
 player = NodePath("../Player")
