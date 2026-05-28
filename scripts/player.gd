@@ -84,8 +84,16 @@ func hurt(damage, damager: Node = null):
 	if damager and damager.has_method("hurt") and stats.thorns_damage > 0:
 		damager.hurt(stats.thorns_damage)
 	
+	const floating_text = preload("res://scenes/particles/floating_text.tscn")
+	
 	hurt_sfx.play()
 	stats.health -= damage
+	
+	var label = floating_text.instantiate()
+	get_tree().root.add_child(label)
+	label.global_position = global_position + Vector2(-20, -30)
+	label.setup(int(stats.health), Color.REBECCA_PURPLE)
+	
 	if stats.health <= 0:
 		get_tree().reload_current_scene()
 

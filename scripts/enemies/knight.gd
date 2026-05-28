@@ -16,8 +16,16 @@ var direction = 1
 var is_attacking = false
 var already_attacked = false
 
+const floating_text = preload("res://scenes/particles/floating_text.tscn")
+
 func hurt(damage):
 	super.hurt(damage)
+	
+	var label = floating_text.instantiate() 
+	get_tree().root.add_child(label)
+	label.global_position = global_position + Vector2(0, -30)
+	label.setup(int(damage))
+	
 	var player = Util.get_player()
 	if player:
 		var player_dir = sign(player.global_position.x - global_position.x)

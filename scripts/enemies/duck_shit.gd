@@ -9,15 +9,22 @@ var saved_facing: Vector2 = Vector2.RIGHT
 @onready var parry_sfx: AudioStreamPlayer2D = $ParrySound
 #endregion
 
+const floating_text = preload("res://scenes/particles/floating_text.tscn")
 
 func on_parry():
 	if not Util.get_player():
 		return
 	
+	var label = floating_text.instantiate()
+	get_tree().root.add_child(label)
+	label.global_position = global_position + Vector2(0, -30)
+	label.setup("PARRY", Color.YELLOW)
+	
 	saved_facing = Util.get_player().facing
 	print("PARRY")
 	parry_sfx.play()
 	parried = true
+	
 
 func _physics_process(_delta: float) -> void:
 	for area in $Area2D.get_overlapping_areas():

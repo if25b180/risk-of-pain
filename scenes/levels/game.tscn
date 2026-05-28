@@ -182,7 +182,7 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dponv"]
 shader = ExtResource("10_i73dc")
-shader_parameter/speed = 0.004
+shader_parameter/speed = 0.05
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1w27a"]
 shader = ExtResource("8_fqlro")
@@ -196,6 +196,12 @@ shader_parameter/tint = Color(0.64328, 0.6072, 0.66, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i73dc"]
 load_path = "res://.godot/imported/mountain_PLACEHOLDER.png-77d8b25a8d34c81deed126d37fcb6a0d.ctex"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i73dc"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5803922)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w27a"]
+bg_color = Color(0.9490196, 0, 0, 0.53333336)
 
 [node name="Root" type="Node2D" unique_id=847775698]
 
@@ -264,6 +270,21 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_i73dc")
 position = Vector2(0, 1)
 texture = SubResource("CompressedTexture2D_i73dc")
+
+[node name="Time_elapsed" type="ProgressBar" parent="Camera2D" unique_id=1622278701]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 149.0
+offset_top = 16.0
+offset_right = 181.605
+offset_bottom = 19.55
+grow_horizontal = 2
+rotation = -1.5707964
+theme_override_styles/background = SubResource("StyleBoxFlat_i73dc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1w27a")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="BossSpawner" parent="." unique_id=374738399 node_paths=PackedStringArray("player") instance=ExtResource("9_cx7qy")]
 player = NodePath("../Player")
