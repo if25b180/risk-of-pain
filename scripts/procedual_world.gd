@@ -6,9 +6,11 @@ extends TileMapLayer
 @export var y_jump_range_max: int = 6
 @export var chunk_width: int = 10
 @export var boss_spawner_chunk: int = 3
+@export var slot_machine_chunk: int = 5
 
 @export var boss_spawner: Node2D
 @export var player: CharacterBody2D
+@export var slot_machine: Node2D
 
 #region Random Node Spawns
 @export var tree_chance: int = 30
@@ -82,6 +84,10 @@ func generate_next_chunk():
 		if chunk_count == boss_spawner_chunk:
 			boss_spawner.global_position = \
 				Vector2i(current_x * tile_set.tile_size.x, floor_current_y * tile_set.tile_size.y)
+		
+		if chunk_count == slot_machine_chunk:
+			slot_machine.global_position = \
+				Vector2i(current_x * tile_set.tile_size.x, floor_current_y * tile_set.tile_size.y - 25)
 		
 		set_cell(
 			Vector2i(current_x, floor_current_y),
