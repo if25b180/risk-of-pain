@@ -16,8 +16,6 @@ var direction = 1
 var is_attacking = false
 var already_attacked = false
 
-const floating_text = preload("res://scenes/particles/floating_text.tscn")
-
 func hurt(damage):
 	super.hurt(damage)
 	

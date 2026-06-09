@@ -9,6 +9,7 @@ class_name Enemy
 
 var player_in_focus = null
 var max_health: float = health
+const floating_text = preload("res://scenes/particles/floating_text.tscn")
 
 #region SFX
 @onready var hurt_enemy_sfx: AudioStreamPlayer2D = $Hurt_Enemy
@@ -28,6 +29,11 @@ func hurt(received_damage):
 	health -= received_damage
 	hurt_enemy_sfx.play()
 	particle_hit_spawn()
+	
+	var label = floating_text.instantiate() 
+	get_tree().root.add_child(label)
+	label.global_position = global_position + Vector2(0, -30)
+	label.setup(int(damage))
 	
 	if health <= 0:
 		if randi_range(0, 100) < item_drop_chance_percent:
