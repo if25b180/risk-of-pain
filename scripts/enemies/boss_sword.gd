@@ -35,9 +35,9 @@ func extend():
 	rotation_degrees = randf_range(-max_rotation_offset, max_rotation_offset)
 
 	if middle_point:
-		var dist = global_position.distance_to(middle_point.global_position)
-		var t = clamp(dist / max_distance, 0.0, 1.0)
-		delay_timer = lerp(max_delay, base_delay, t)
+		var distance = global_position.distance_to(middle_point.global_position)
+		var lerp_speed = clamp(distance / max_distance, 0.0, 1.0)
+		delay_timer = lerp(max_delay, base_delay, lerp_speed)
 
 func disengage():
 	extending = false
@@ -46,6 +46,9 @@ func disengage():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if not is_dangerous:
+		return
+	
 	if body is Player:
 		body.hurt(damage)
 		disengage()
