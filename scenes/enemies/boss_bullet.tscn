@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dhagv5loeslsd"]
+
+[ext_resource type="Texture2D" uid="uid://c1hg5d67vkhke" path="res://art/enemy_assets/boss_bullet.png" id="1_1l0pq"]
+[ext_resource type="Script" uid="uid://c5gyn3beiklvv" path="res://scripts/enemies/boss_bullet.gd" id="2_qrj7v"]
+[ext_resource type="AudioStream" uid="uid://d2p2ptf82mua6" path="res://sounds/Parry.wav" id="3_442rt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yob3x"]
+size = Vector2(11, 11)
+
+[node name="BossBullet" type="Sprite2D" unique_id=1031175842]
+texture = ExtResource("1_1l0pq")
+script = ExtResource("2_qrj7v")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=764090214]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1547675809]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_yob3x")
+
+[node name="ParrySound" type="AudioStreamPlayer2D" parent="." unique_id=1542616005]
+stream = ExtResource("3_442rt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

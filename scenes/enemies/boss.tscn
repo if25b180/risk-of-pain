@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ds080rdwls3su"]
 
-[ext_resource type="Script" path="res://scripts/enemies/boss.gd" id="1_neq0i"]
+[ext_resource type="Script" uid="uid://c0v4555mrgdyf" path="res://scripts/enemies/boss.gd" id="1_neq0i"]
 [ext_resource type="Texture2D" uid="uid://bmhy5pcvc62n1" path="res://art/enemy_assets/boss.png" id="2_neq0i"]
 [ext_resource type="Texture2D" uid="uid://dn40o3hgm5lt0" path="res://art/enemy_assets/boss_attack.png" id="3_qnbj4"]
 [ext_resource type="Script" uid="uid://d1pgfnsfhb45k" path="res://scripts/enemies/miscellaneous/enemy_hitbox.gd" id="4_2cdgk"]
@@ -28,7 +28,7 @@ script = ExtResource("1_neq0i")
 normal_texture = ExtResource("2_neq0i")
 attack_texture = ExtResource("3_qnbj4")
 attack_area = NodePath("AttackArea")
-health = 200.0
+health = 1000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1800397363]
 texture = ExtResource("2_neq0i")
@@ -42,7 +42,8 @@ shape = SubResource("RectangleShape2D_r3bxh")
 target_position = Vector2(15, 12)
 
 [node name="PlayerDetector" type="RayCast2D" parent="." unique_id=677006667]
-target_position = Vector2(16, 0)
+position = Vector2(0, 16)
+target_position = Vector2(42, 0)
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1263762866]
 collision_layer = 2

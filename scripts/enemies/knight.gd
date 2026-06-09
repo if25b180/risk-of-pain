@@ -19,7 +19,7 @@ var already_attacked = false
 func hurt(damage):
 	super.hurt(damage)
 	
-	var label = floating_text.instantiate() 
+	var label = PreloadManager.floating_text.instantiate() 
 	get_tree().root.add_child(label)
 	label.global_position = global_position + Vector2(0, -30)
 	label.setup(int(damage))

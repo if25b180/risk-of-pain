@@ -1,9 +1,9 @@
 extends Sprite2D
 
-var shit_damage = 15
-var shit_speed = 2
+var damage = 15
+var speed = 2
 var parried = false
-var saved_facing: Vector2 = Vector2.RIGHT
+var direction = 0
 
 #region SFX
 @onready var parry_sfx: AudioStreamPlayer2D = $ParrySound
@@ -20,9 +20,6 @@ func on_parry():
 	get_tree().root.add_child(label)
 	label.global_position = global_position + Vector2(0, -30)
 	label.setup("PARRY", Color.YELLOW)
-	
-	saved_facing = Util.get_player().facing
-	print("PARRY")
 	parry_sfx.play()
 	parried = true
 	
@@ -37,12 +34,15 @@ func _physics_process(_delta: float) -> void:
 		if area_sprite.visible:
 			on_parry()
 	
+	var angle = deg_to_rad(direction)
+	var direction_vec = Vector2(cos(angle), sin(angle))
+	
 	if parried:
 		cancel_free()
 		if Util.get_player():
-			global_position.x += 2 * shit_speed * saved_facing.x
+			global_position += direction_vec * speed;
 	else:
-		global_position.y += shit_speed
+		global_position.y += direction_vec * speed;
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is TileMap or body is TileMapLayer:
@@ -50,5 +50,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 		
 	if body is Player:
-		body.hurt(shit_damage)
+		body.hurt(damage)
 		queue_free()

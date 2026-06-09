@@ -45,6 +45,7 @@ folder_colors={
 
 enemy=""
 player_attack=""
+boss_sword=""
 
 [input]
 

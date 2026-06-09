@@ -1,6 +1,6 @@
 extends Label
 ## 	For new enemies:
-#	add for e.g. const floating_text = preload("res://scenes/particles/floating_text.tscn") to the script
+#	use PreloadManager's floating_text to instantiate a new part
 #	use int(number) wenn calling function with a number
 
 func setup(input_text, color: Color = Color.RED):
