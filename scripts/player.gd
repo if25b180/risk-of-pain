@@ -90,7 +90,7 @@ func hurt(damage, damager: Node = null):
 	var label = PreloadManager.floating_text.instantiate()
 	get_tree().root.add_child(label)
 	label.global_position = global_position + Vector2(-20, -30)
-	label.setup(int(stats.health), Color.REBECCA_PURPLE)
+	label.setup(int(damage), Color.REBECCA_PURPLE)
 	
 	if stats.health <= 0:
 		get_tree().reload_current_scene()
