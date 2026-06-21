@@ -44,11 +44,8 @@ func hurt(received_damage):
 			if not dropped_item_scene:
 				queue_free()
 				return
-				
-			var dropped_item: Node2D = dropped_item_scene.instantiate()
 			
-			Util.get_world_root().add_child(dropped_item)
-			dropped_item.global_position = global_position
+			Util.scene_instantiate(dropped_item_scene, global_position)
 		
 		queue_free()
 

@@ -13,6 +13,16 @@ func get_player() -> Player:
 			return potential_player
 			
 	return null
+	
+func scene_instantiate(scene: PackedScene, global_position: Vector2, in_node: Node2D = null) -> Node2D:
+	if in_node == null:
+		in_node = Util.get_world_root()
+	
+	var new_node: Node2D = scene.instantiate()
+	in_node.add_child(new_node)
+	new_node.global_position = global_position
+	
+	return new_node
 
 # See -> https://godotforums.org/d/35773-only-4-line-of-code-to-get-the-nearest-node/7
 func find_closest_node(from_position: Vector2, group: String):

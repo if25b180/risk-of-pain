@@ -14,7 +14,6 @@ class_name Boss
 @onready var sprite = $Sprite2D
 @export var jump_chance: float = 0.3  # 0.0 to 1.0
 @export var direction_change_interval: float = 2.0
-@export var attack_interval: float = 8.0
 
 var move_timer: float = 0.0
 var phase_timer: float = 0.0
@@ -22,26 +21,42 @@ var phase_timer: float = 0.0
 var direction = 1
 var already_attacked = false
 
-enum Phase { IDLE, SWORD_EXTEND }
+#region Phase.BULLET_HELL
+var bullet_amount = 300
+var bullet_delay = 0.02
+var bullet_delay_reset = 0.02
+#endregion
+
+enum Phase {
+	IDLE,
+	SWORD_EXTEND,
+	BULLET_HELL,
+	
+	Length
+}
 var phase: Phase = Phase.IDLE
 var phases: Array[Callable] = []
 
 func _ready():
-	phases = [phase_idle, phase_attack]
+	phases = [phase_idle, phase_attack, phase_bullet_hell]
+	set_phase(Phase.IDLE)
 
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	phase_timer -= delta
-	if phase_timer <= 0.0:
-		if phase == Phase.IDLE:
-			set_phase(Phase.SWORD_EXTEND)
-		else:
-			set_phase(Phase.IDLE)
-		phase_timer = attack_interval
-	
 	phases[phase].call(delta)
+	
+func next_phase():
+	swords_disengage() # Just to be sure
+	
+	phase += 1
+	
+	# Phases "loop" or wraparound once the last phase is reached
+	if phase == Phase.Length:
+		phase = Phase.IDLE
+	
+	set_phase(phase)
 
 func phase_idle(delta: float):
 	velocity.x = direction * speed
@@ -61,27 +76,42 @@ func phase_idle(delta: float):
 func phase_attack(_delta: float):
 	velocity.x = 0
 	move_and_slide()
+	
+func phase_bullet_hell(delta: float):
+	bullet_delay -= delta
+	
+	if bullet_delay <= 0:
+		var new_bullet = Util.scene_instantiate(PreloadManager.boss_bullet, global_position)
+		new_bullet.direction = randi_range(1, 360)
+		
+		if bullet_amount <= 0:
+			next_phase()
+	
+		bullet_amount -= 1
+		bullet_delay = bullet_delay_reset
 
 func set_phase(new_phase: Phase):
+	# Any setup behaviour here
 	phase = new_phase
 	match phase:
 		Phase.IDLE:
 			if normal_texture:
 				sprite.texture = normal_texture
 			swords_disengage()
+			await get_tree().create_timer(attack_duration).timeout
+			next_phase()
+			
 		Phase.SWORD_EXTEND:
 			already_attacked = false
 			if attack_texture:
 				sprite.texture = attack_texture
 			swords_extend()
-			do_attack()
-
-func do_attack():
-	if player_in_focus and not already_attacked:
-		player_in_focus.hurt(damage)
-		already_attacked = true
-	await get_tree().create_timer(attack_duration).timeout
-	set_phase(Phase.IDLE)
+			await get_tree().create_timer(attack_duration).timeout
+			next_phase()
+			
+		Phase.BULLET_HELL:
+			bullet_amount = 300
+			pass
 
 func swords_extend():
 	for sword in get_tree().get_nodes_in_group("boss_sword"):

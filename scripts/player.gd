@@ -251,11 +251,8 @@ func attack_secondary():
 		print("WARN: Player has no secondary attack attached!")
 		return
 	
+	var new_node = Util.scene_instantiate(attack_secondary_scene, global_position)
 	bow_sfx.play()
-	
-	var new_node: Node2D = attack_secondary_scene.instantiate()
-	Util.get_world_root().add_child(new_node)
-	new_node.global_position = global_position
 	
 	new_node.direction.x = facing.x
 	if Input.is_action_pressed("move_down") and not is_on_floor():

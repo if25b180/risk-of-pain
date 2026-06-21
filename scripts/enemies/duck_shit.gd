@@ -39,8 +39,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if parried:
 		cancel_free()
-		if Util.get_player():
-			global_position.x += 2 * shit_speed * saved_facing.x
+		global_position.x += 2 * shit_speed * saved_facing.x
 	else:
 		global_position.y += shit_speed
 

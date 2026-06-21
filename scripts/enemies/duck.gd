@@ -29,9 +29,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
 	if randi_range(0, 100) < shit_chance_0_100:
-		var new_node: Node2D = shit_scene.instantiate()
-		Util.get_world_root().add_child(new_node)
-		new_node.global_position = global_position
+		Util.scene_instantiate(shit_scene, global_position)
 		shit_spawn_sfx.play()
 	
 	if start_global_position == null:

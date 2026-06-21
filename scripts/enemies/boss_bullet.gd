@@ -1,9 +1,11 @@
 extends Sprite2D
 
+var alive_time = 10
 var damage = 15
 var speed = 2
 var parried = false
 var direction = 0
+var saved_facing: Vector2 = Vector2.RIGHT
 
 #region SFX
 @onready var parry_sfx: AudioStreamPlayer2D = $ParrySound
@@ -20,9 +22,15 @@ func on_parry():
 	get_tree().root.add_child(label)
 	label.global_position = global_position + Vector2(0, -30)
 	label.setup("PARRY", Color.YELLOW)
+	
+	saved_facing = Util.get_player().facing
 	parry_sfx.play()
 	parried = true
-	
+
+func _process(delta: float) -> void:
+	alive_time -= delta
+	if alive_time <= 0:
+		queue_free()
 
 func _physics_process(_delta: float) -> void:
 	for area in $Area2D.get_overlapping_areas():
@@ -38,17 +46,15 @@ func _physics_process(_delta: float) -> void:
 	var direction_vec = Vector2(cos(angle), sin(angle))
 	
 	if parried:
-		cancel_free()
-		if Util.get_player():
-			global_position += direction_vec * speed;
+		pass
+		# Parrying is pretty OP for this bullet, so we disable it for now...
+		# Don't know if balancing it is in the time budget anymore
+		#cancel_free()
+		#global_position.x += 2 * speed * saved_facing.x
 	else:
-		global_position.y += direction_vec * speed;
+		global_position += direction_vec * speed
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is TileMap or body is TileMapLayer:
-		queue_free()
-		return
-		
 	if body is Player:
 		body.hurt(damage)
 		queue_free()
