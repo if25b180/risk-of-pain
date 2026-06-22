@@ -32,7 +32,6 @@
 [ext_resource type="PackedScene" uid="uid://dxgdnqqss5ctl" path="res://scenes/items/pickups/prize.tscn" id="31_7yv8k"]
 [ext_resource type="Script" uid="uid://cw5ni3ret76ok" path="res://scripts/win_screen.gd" id="31_efprs"]
 [ext_resource type="Script" uid="uid://bxtek7cq1cvjr" path="res://scripts/prize_container.gd" id="31_j2fik"]
-[ext_resource type="AudioStream" uid="uid://dqa1wyug1i4bt" path="res://sounds/OSTs/ForGainShallBePain.wav" id="33_efprs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -595,10 +594,6 @@ win_screen_container = NodePath("../WinScreenContainer")
 
 [node name="SlotMachine" parent="." unique_id=2119584735 instance=ExtResource("28_f0qvk")]
 position = Vector2(120, 3)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2115663356]
-stream = ExtResource("33_efprs")
-autoplay = true
 
 [node name="WinScreenContainer" type="Node2D" parent="." unique_id=1229558533]
 position = Vector2(-543, -27.999994)

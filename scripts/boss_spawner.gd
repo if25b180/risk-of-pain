@@ -5,6 +5,8 @@ extends Node2D
 @export var camera_2d: Camera2D
 @export var boss: Node2D
 
+
+
 var boss_already_spawned = false
 
 func _physics_process(_delta: float) -> void:
@@ -21,6 +23,7 @@ func _process(_delta: float) -> void:
 	
 	if player.global_position.distance_to(global_position) < 64 \
 			and Input.is_action_just_pressed("interact"):
+		MusicManager.play_boss()
 		Util.get_player().global_position = boss_arena_spawnpoint.global_position
 		camera_2d.is_bound_to_world = false
 	

@@ -182,4 +182,5 @@ func hurt(received_damage):
 		swords_disengage()
 		prize_container.activate()
 		win_screen_container.activate()
+		MusicManager.play_background()
 	

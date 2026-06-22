@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	ItemPool.load_item_scenes()
+	MusicManager.play_background()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
