@@ -1,9 +1,7 @@
 extends Node
 
-var burn_chance = 10
-
 func on_player_attack_primary(player: Player, own_item_count: int):
-	var areas = player.attack_area.get_overlapping_areas()
+	var areas = player.chosen_slash_area.get_overlapping_areas()
 	for area in areas:
 		if not area is EnemyHitbox:
 			continue

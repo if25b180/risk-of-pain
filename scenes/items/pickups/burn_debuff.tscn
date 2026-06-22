@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://nwvyxnjlvrbt"]
 
 [ext_resource type="Script" uid="uid://gi0nxhfud0q4" path="res://scripts/items/base/item.gd" id="1_0ggh7"]
-[ext_resource type="Script" uid="uid://c2mo31ncgph46" path="res://scripts/items/pickups/poison_debuff.gd" id="2_hjjjo"]
+[ext_resource type="Script" uid="uid://bj8chsctpwkyx" path="res://scripts/items/pickups/burn_debuff.gd" id="2_hm61d"]
 [ext_resource type="Texture2D" uid="uid://cwp0plxrr5qk2" path="res://art/items/Flame_Gauntlet.png" id="3_hm61d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fat2f"]
@@ -11,7 +11,7 @@ size = Vector2(10, 10)
 script = ExtResource("1_0ggh7")
 item_name = "Flame Gauntlet"
 item_description = "Applies a burn effect on meele hits"
-item_script = ExtResource("2_hjjjo")
+item_script = ExtResource("2_hm61d")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=16991366]
 texture = ExtResource("3_hm61d")

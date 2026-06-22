@@ -28,6 +28,10 @@
 [ext_resource type="PackedScene" uid="uid://bl50q7h00e0d8" path="res://scenes/items/pickups/thorns.tscn" id="21_02t1k"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/boss_sword.tscn" id="27_1w27a"]
 [ext_resource type="Texture2D" uid="uid://dnt41bdw4rs72" path="res://art/environment/slotmachine.png" id="28_dponv"]
+[ext_resource type="Script" uid="uid://dpcqo655i5pdh" path="res://scripts/slot_machine.gd" id="29_f0qvk"]
+[ext_resource type="AudioStream" uid="uid://bfi16pdbm2r7t" path="res://sounds/ItemUpgrade.wav" id="30_j2fik"]
+[ext_resource type="AudioStream" uid="uid://bti0srf058tpt" path="res://sounds/ItemLost.wav" id="31_efprs"]
+[ext_resource type="AudioStream" uid="uid://dlsop2lwcpqrl" path="res://sounds/ItemSame.wav" id="32_e1au8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -204,6 +208,11 @@ bg_color = Color(0.6, 0.6, 0.6, 0.5803922)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w27a"]
 bg_color = Color(0.9490196, 0, 0, 0.53333336)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0qvk"]
+font_size = 4
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Root" type="Node2D" unique_id=847775698]
 
@@ -508,7 +517,27 @@ position = Vector2(58, 71)
 [node name="BossSword4" parent="BossSwords" unique_id=157201134 instance=ExtResource("27_1w27a")]
 position = Vector2(84, 67)
 
-[node name="SlotMachine" type="Sprite2D" parent="." unique_id=446184556]
-z_index = 10
+[node name="SlotMachine" type="Sprite2D" parent="." unique_id=446184556 node_paths=PackedStringArray("player")]
+light_mask = 2
+visibility_layer = 2
+z_index = -1
 position = Vector2(120, 3)
 texture = ExtResource("28_dponv")
+script = ExtResource("29_f0qvk")
+player = NodePath("../Player")
+
+[node name="Label" type="Label" parent="SlotMachine" unique_id=1441313935]
+offset_top = 20.0
+offset_right = 63.0
+offset_bottom = 43.0
+text = "E - Interact"
+label_settings = SubResource("LabelSettings_f0qvk")
+
+[node name="ItemUpgrade" type="AudioStreamPlayer2D" parent="SlotMachine" unique_id=1200924911]
+stream = ExtResource("30_j2fik")
+
+[node name="ItemLost" type="AudioStreamPlayer2D" parent="SlotMachine" unique_id=1938880511]
+stream = ExtResource("31_efprs")
+
+[node name="ItemSame" type="AudioStreamPlayer2D" parent="SlotMachine" unique_id=145503196]
+stream = ExtResource("32_e1au8")

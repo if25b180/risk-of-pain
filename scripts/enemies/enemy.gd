@@ -32,7 +32,7 @@ func hurt(received_damage):
 	var label = PreloadManager.floating_text.instantiate() 
 	get_tree().root.add_child(label)
 	label.global_position = global_position + Vector2(0, -30)
-	label.setup(int(damage))
+	label.setup(int(received_damage))
 	
 	if health <= 0:
 		if randi_range(0, 100) < item_drop_chance_percent:

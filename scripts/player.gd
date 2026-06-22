@@ -243,6 +243,7 @@ func attack():
 	sprite.visible = true
 	chosen_slash.visible = false
 	
+	
 func attack_secondary():
 	if attack_secondary_locked:
 		return
@@ -308,3 +309,21 @@ func make_outlined_icon(source: Texture2D, rarity: int) -> ImageTexture:
 				dst_img.set_pixel(x + padding, y + padding, px)
 
 	return ImageTexture.create_from_image(dst_img)
+
+
+func recalculate_stats() -> void:
+	stats = initial_stats.duplicate()
+	for item_scene in items:
+		var data = items[item_scene]
+		var scene: Item = load(item_scene).instantiate()
+		if not scene.item_script:
+			scene.free()
+			continue
+		
+		var s = scene.item_script.new()
+		data.attack_hook = s.on_player_attack_primary if s.has_method("on_player_attack_primary") else null
+		data.passive_hook = s.on_passive if s.has_method("on_passive") else null
+		if s.has_method("on_pickup"):
+			for i in data.count:
+				s.on_pickup(self)
+		scene.free()
