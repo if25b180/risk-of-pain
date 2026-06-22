@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://crmqnw402jgtj"]
+
+[ext_resource type="Script" uid="uid://bhp40gacrd6f8" path="res://scripts/enemies/boss_spike.gd" id="1_3y24c"]
+[ext_resource type="Texture2D" uid="uid://s3tdqhawtab5" path="res://art/enemy_assets/spike.png" id="2_nbbdx"]
+[ext_resource type="AudioStream" uid="uid://d2p2ptf82mua6" path="res://sounds/Parry.wav" id="3_nbbdx"]
+[ext_resource type="Texture2D" uid="uid://b1km0ox8ds3rw" path="res://art/enemy_assets/warning.png" id="4_58bvi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yob3x"]
+size = Vector2(11, 11)
+
+[node name="Spike" type="Node2D" unique_id=1098584263]
+script = ExtResource("1_3y24c")
+
+[node name="SpikeSprite" type="Sprite2D" parent="." unique_id=1623663667]
+texture = ExtResource("2_nbbdx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=764090214]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1547675809]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_yob3x")
+
+[node name="ParrySound" type="AudioStreamPlayer2D" parent="." unique_id=1542616005]
+stream = ExtResource("3_nbbdx")
+
+[node name="WarningSprite" type="Sprite2D" parent="." unique_id=1020430671]
+position = Vector2(0, 4)
+texture = ExtResource("4_58bvi")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

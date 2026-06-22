@@ -45,14 +45,14 @@ func _physics_process(_delta: float) -> void:
 	var angle = deg_to_rad(direction)
 	var direction_vec = Vector2(cos(angle), sin(angle))
 	
-	if parried:
-		pass
+	#if parried:
+		#pass
 		# Parrying is pretty OP for this bullet, so we disable it for now...
 		# Don't know if balancing it is in the time budget anymore
 		#cancel_free()
 		#global_position.x += 2 * speed * saved_facing.x
-	else:
-		global_position += direction_vec * speed
+	#else:
+	global_position += direction_vec * speed
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://diyebg1hkrdac"]
+
+[ext_resource type="Texture2D" uid="uid://dnt41bdw4rs72" path="res://art/environment/slotmachine.png" id="1_bchp8"]
+[ext_resource type="Script" uid="uid://dpcqo655i5pdh" path="res://scripts/slot_machine.gd" id="2_n0340"]
+[ext_resource type="AudioStream" uid="uid://bfi16pdbm2r7t" path="res://sounds/ItemUpgrade.wav" id="3_yg6hj"]
+[ext_resource type="AudioStream" uid="uid://bti0srf058tpt" path="res://sounds/ItemLost.wav" id="4_n8lxu"]
+[ext_resource type="AudioStream" uid="uid://dlsop2lwcpqrl" path="res://sounds/ItemSame.wav" id="5_umaan"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0qvk"]
+font_size = 4
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SlotMachine" type="Sprite2D" unique_id=2119584735 node_paths=PackedStringArray("player")]
+light_mask = 2
+visibility_layer = 2
+z_index = -1
+texture = ExtResource("1_bchp8")
+script = ExtResource("2_n0340")
+player = NodePath("")
+
+[node name="Label" type="Label" parent="." unique_id=365053621]
+offset_top = 20.0
+offset_right = 63.0
+offset_bottom = 43.0
+text = "E - Interact"
+label_settings = SubResource("LabelSettings_f0qvk")
+
+[node name="ItemUpgrade" type="AudioStreamPlayer2D" parent="." unique_id=731818957]
+stream = ExtResource("3_yg6hj")
+
+[node name="ItemLost" type="AudioStreamPlayer2D" parent="." unique_id=1812537381]
+stream = ExtResource("4_n8lxu")
+
+[node name="ItemSame" type="AudioStreamPlayer2D" parent="." unique_id=957903041]
+stream = ExtResource("5_umaan")

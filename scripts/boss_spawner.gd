@@ -3,7 +3,7 @@ extends Node2D
 @export var player: CharacterBody2D
 @export var boss_arena_spawnpoint: Node2D
 @export var camera_2d: Camera2D
-@export var boss_scene: PackedScene
+@export var boss: Node2D
 
 var boss_already_spawned = false
 
@@ -25,3 +25,5 @@ func _process(_delta: float) -> void:
 		camera_2d.is_bound_to_world = false
 	
 		boss_already_spawned = true
+		boss.enabled = true
+		boss.init()

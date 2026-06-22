@@ -1,14 +1,16 @@
 extends Node2D
 
-@export var player: CharacterBody2D
 @onready var label: Label = $Label
 @onready var good_sfx: AudioStreamPlayer2D = $ItemUpgrade
 @onready var neutral_sfx: AudioStreamPlayer2D = $ItemSame
 @onready var bad_sfx: AudioStreamPlayer2D = $ItemLost
 
+var player: CharacterBody2D
+
 var is_spinning = false
 
 func _ready():
+	player = Util.get_player()
 	label.position = Vector2(-13, -20)
 
 func _physics_process(_delta: float) -> void:

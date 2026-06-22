@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://d2p2ptf82mua6" path="res://sounds/Parry.wav" id="3_442rt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yob3x"]
-size = Vector2(11, 11)
+size = Vector2(7, 7)
 
 [node name="BossBullet" type="Sprite2D" unique_id=1031175842]
 texture = ExtResource("1_1l0pq")
