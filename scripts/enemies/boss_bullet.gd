@@ -12,20 +12,22 @@ var saved_facing: Vector2 = Vector2.RIGHT
 #endregion
 
 func on_parry():
-	if parried:
-		return
+	pass
 	
-	if not Util.get_player():
-		return
-	
-	var label = PreloadManager.floating_text.instantiate()
-	get_tree().root.add_child(label)
-	label.global_position = global_position + Vector2(0, -30)
-	label.setup("PARRY", Color.YELLOW)
-	
-	saved_facing = Util.get_player().facing
-	parry_sfx.play()
-	parried = true
+	#if parried:
+		#return
+	#
+	#if not Util.get_player():
+		#return
+	#
+	#var label = PreloadManager.floating_text.instantiate()
+	#get_tree().root.add_child(label)
+	#label.global_position = global_position + Vector2(0, -30)
+	#label.setup("PARRY", Color.YELLOW)
+	#
+	#saved_facing = Util.get_player().facing
+	#parry_sfx.play()
+	#parried = true
 
 func _process(delta: float) -> void:
 	alive_time -= delta

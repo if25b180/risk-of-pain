@@ -8,7 +8,7 @@ class_name Boss
 @export var attack_texture: Texture2D
 @export var middle_point: Node2D
 
-@export var attack_duration: float = 10
+@export var attack_duration: float = 8
 @export var idle_duration: float = 3
 @export var falling_spikes_duration: float = 5
 
@@ -45,6 +45,8 @@ var phase: Phase = Phase.IDLE
 var phases: Array[Callable] = []
 
 func init():
+	$HoldingSword.visible = false
+	
 	phases = [
 		phase_idle,
 		phase_attack,
@@ -150,11 +152,13 @@ func phase_falling_spikes(_delta: float):
 #endregion
 
 func swords_extend():
+	$HoldingSword.visible = true
 	for sword in get_tree().get_nodes_in_group("boss_sword"):
 		sword.middle_point = middle_point
 		sword.extend()
 
 func swords_disengage():
+	$HoldingSword.visible = false
 	for sword in get_tree().get_nodes_in_group("boss_sword"):
 		sword.disengage()
 		

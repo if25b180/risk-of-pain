@@ -4,20 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://bpxiu61443krk" path="res://art/enemy_assets/boss_sword.png" id="1_vbbmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbbmn"]
-size = Vector2(8, 63)
+size = Vector2(8, 41)
 
 [node name="BossSword" type="Node2D" unique_id=441156672 groups=["boss_sword"]]
 z_index = -10
 script = ExtResource("1_8ndfu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961343097]
-position = Vector2(4, -13)
+position = Vector2(-6.9999995, -6)
+rotation = -0.7902759
 texture = ExtResource("1_vbbmn")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=520935850 groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=967046683]
-position = Vector2(3, 2.5)
+position = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_vbbmn")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://c0v4555mrgdyf" path="res://scripts/enemies/boss.gd" id="1_neq0i"]
 [ext_resource type="Texture2D" uid="uid://bmhy5pcvc62n1" path="res://art/enemy_assets/boss.png" id="2_neq0i"]
+[ext_resource type="Shader" uid="uid://bvj5c8l0toy4d" path="res://shaders/boss_outline.gdshader" id="3_yye4w"]
 [ext_resource type="Script" uid="uid://d1pgfnsfhb45k" path="res://scripts/enemies/miscellaneous/enemy_hitbox.gd" id="4_2cdgk"]
 [ext_resource type="AudioStream" uid="uid://ba6qkpu4qtc6e" path="res://sounds/EnemyDamage.wav" id="5_yye4w"]
+[ext_resource type="Texture2D" uid="uid://7c2u2jd2615j" path="res://art/enemy_assets/boss_sword_holding.png" id="6_rvo7g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvo7g"]
+shader = ExtResource("3_yye4w")
+shader_parameter/outline_color = Color(1, 0, 0, 0.5)
+shader_parameter/outline_width = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3bxh"]
 size = Vector2(22, 58)
@@ -30,6 +37,7 @@ attack_area = NodePath("AttackArea")
 health = 1000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1800397363]
+material = SubResource("ShaderMaterial_rvo7g")
 texture = ExtResource("2_neq0i")
 offset = Vector2(0, 1)
 
@@ -75,6 +83,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Hurt_Enemy" type="AudioStreamPlayer2D" parent="." unique_id=731285734]
 stream = ExtResource("5_yye4w")
+
+[node name="HoldingSword" type="Sprite2D" parent="." unique_id=271831042]
+position = Vector2(21, 7)
+texture = ExtResource("6_rvo7g")
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
