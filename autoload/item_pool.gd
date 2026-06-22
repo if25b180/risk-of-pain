@@ -30,7 +30,8 @@ func get_random_item():
 	# We only need to instantiate to get its item rarity
 	var chosen_item_instance: Item = chosen_item.instantiate()
 	var retries = 100
-	while chosen_item_instance.item_rarity != chosen_rarity:
+	while chosen_item_instance.item_rarity != chosen_rarity or \
+			chosen_item_instance.item_name.contains('Prize'):
 		if retries <= 0:
 			break
 		
