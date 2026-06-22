@@ -438,6 +438,7 @@ position = Vector2(0, 1)
 texture = SubResource("CompressedTexture2D_i73dc")
 
 [node name="Time_elapsed" type="ProgressBar" parent="Camera2D" unique_id=1622278701]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
