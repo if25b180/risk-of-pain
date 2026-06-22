@@ -29,6 +29,9 @@
 [ext_resource type="PackedScene" uid="uid://bl50q7h00e0d8" path="res://scenes/items/pickups/thorns.tscn" id="21_02t1k"]
 [ext_resource type="PackedScene" uid="uid://dn75uj0k02pyb" path="res://scenes/enemies/boss_sword.tscn" id="27_1w27a"]
 [ext_resource type="PackedScene" uid="uid://diyebg1hkrdac" path="res://scenes/levels/structures/slot_machine.tscn" id="28_f0qvk"]
+[ext_resource type="PackedScene" uid="uid://dxgdnqqss5ctl" path="res://scenes/items/pickups/prize.tscn" id="31_7yv8k"]
+[ext_resource type="Script" uid="uid://cw5ni3ret76ok" path="res://scripts/win_screen.gd" id="31_efprs"]
+[ext_resource type="Script" uid="uid://bxtek7cq1cvjr" path="res://scripts/prize_container.gd" id="31_j2fik"]
 [ext_resource type="AudioStream" uid="uid://dqa1wyug1i4bt" path="res://sounds/OSTs/ForGainShallBePain.wav" id="33_efprs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
@@ -206,6 +209,11 @@ bg_color = Color(0.6, 0.6, 0.6, 0.5803922)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w27a"]
 bg_color = Color(0.9490196, 0, 0, 0.53333336)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e1au8"]
+line_spacing = -5.0
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Root" type="Node2D" unique_id=847775698]
 
@@ -579,9 +587,11 @@ boss_arena_spawnpoint = NodePath("../BossArenaSpawnpoint")
 camera_2d = NodePath("../Camera2D")
 boss = NodePath("../Boss")
 
-[node name="Boss" parent="." unique_id=223010565 node_paths=PackedStringArray("middle_point") instance=ExtResource("11_6370d")]
+[node name="Boss" parent="." unique_id=223010565 node_paths=PackedStringArray("middle_point", "prize_container", "win_screen_container") instance=ExtResource("11_6370d")]
 position = Vector2(-488, 10)
 middle_point = NodePath("../BossArenaSpawnpoint")
+prize_container = NodePath("../PrizeContainer")
+win_screen_container = NodePath("../WinScreenContainer")
 
 [node name="SlotMachine" parent="." unique_id=2119584735 instance=ExtResource("28_f0qvk")]
 position = Vector2(120, 3)
@@ -589,3 +599,73 @@ position = Vector2(120, 3)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2115663356]
 stream = ExtResource("33_efprs")
 autoplay = true
+
+[node name="WinScreenContainer" type="Node2D" parent="." unique_id=1229558533]
+position = Vector2(-543, -27.999994)
+scale = Vector2(0.285, 0.285)
+script = ExtResource("31_efprs")
+
+[node name="ColorRectContainer" type="Node2D" parent="WinScreenContainer" unique_id=1486634328]
+position = Vector2(-7.017758, -3.508772)
+scale = Vector2(10, 7)
+
+[node name="ColorRect" type="ColorRect" parent="WinScreenContainer/ColorRectContainer" unique_id=1572117094]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.4)
+metadata/_edit_use_anchors_ = true
+
+[node name="WinScreen" type="Label" parent="WinScreenContainer" unique_id=547576228]
+offset_right = 339.0
+offset_bottom = 23.0
+text = "Final Stats:
+#as
+df
+asd
+f
+asdf"
+label_settings = SubResource("LabelSettings_e1au8")
+
+[node name="PrizeContainer" type="Node2D" parent="." unique_id=653652592]
+position = Vector2(-487, 49)
+script = ExtResource("31_j2fik")
+
+[node name="Item" parent="PrizeContainer" unique_id=1751924751 instance=ExtResource("31_7yv8k")]
+
+[node name="DamageIncreasers" type="Node2D" parent="." unique_id=52401141]
+position = Vector2(117, 96)
+
+[node name="Item" parent="DamageIncreasers" unique_id=446955435 instance=ExtResource("14_hilwk")]
+
+[node name="Item2" parent="DamageIncreasers" unique_id=199769786 instance=ExtResource("14_hilwk")]
+position = Vector2(1, 4)
+
+[node name="Item3" parent="DamageIncreasers" unique_id=859530382 instance=ExtResource("14_hilwk")]
+position = Vector2(0, 5)
+
+[node name="Item4" parent="DamageIncreasers" unique_id=1358458368 instance=ExtResource("14_hilwk")]
+position = Vector2(0, 4)
+
+[node name="Item5" parent="DamageIncreasers" unique_id=1282821599 instance=ExtResource("14_hilwk")]
+position = Vector2(1, 4)
+
+[node name="Item7" parent="DamageIncreasers" unique_id=282877767 instance=ExtResource("14_hilwk")]
+position = Vector2(1, 2)
+
+[node name="Item8" parent="DamageIncreasers" unique_id=679234123 instance=ExtResource("14_hilwk")]
+position = Vector2(1, 3)
+
+[node name="Item9" parent="DamageIncreasers" unique_id=106005478 instance=ExtResource("14_hilwk")]
+position = Vector2(0, 4)
+
+[node name="Item10" parent="DamageIncreasers" unique_id=1045600503 instance=ExtResource("14_hilwk")]
+position = Vector2(0, 3)
+
+[node name="Item11" parent="DamageIncreasers" unique_id=1156766913 instance=ExtResource("14_hilwk")]
+position = Vector2(1, 3)
+
+[node name="Item12" parent="DamageIncreasers" unique_id=1442225442 instance=ExtResource("14_hilwk")]
+position = Vector2(0, 4)
+
+[node name="Item6" parent="DamageIncreasers" unique_id=1294357346 instance=ExtResource("14_hilwk")]
+position = Vector2(0, 5)

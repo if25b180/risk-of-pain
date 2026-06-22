@@ -7,6 +7,8 @@ class_name Boss
 @export var normal_texture: Texture2D
 @export var attack_texture: Texture2D
 @export var middle_point: Node2D
+@export var prize_container: Node2D
+@export var win_screen_container: Node2D
 
 @export var attack_duration: float = 8
 @export var idle_duration: float = 3
@@ -15,6 +17,8 @@ class_name Boss
 @onready var floor_ray = $FloorDetector
 @onready var player_ray = $PlayerDetector
 @onready var sprite = $Sprite2D
+@onready var item_list: ItemList = $"../Camera2D/ItemList"
+
 @export var jump_chance: float = 0.3  # 0.0 to 1.0
 @export var direction_change_interval: float = 2.0
 
@@ -170,3 +174,12 @@ func flip_direction():
 	player_ray.target_position.x = abs(player_ray.target_position.x) * direction
 	var collider = $AttackArea/CollisionShape2D
 	collider.position.x = abs(collider.position.x) * direction
+	
+func hurt(received_damage):
+	super.hurt(received_damage)
+	
+	if health <= 0:
+		swords_disengage()
+		prize_container.activate()
+		win_screen_container.activate()
+	

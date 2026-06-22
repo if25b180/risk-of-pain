@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dxgdnqqss5ctl"]
+
+[ext_resource type="PackedScene" uid="uid://bs1ad6nwcpkoo" path="res://scenes/items/pickups/item.tscn" id="1_ngijn"]
+[ext_resource type="Script" uid="uid://pe05at2xur2g" path="res://scripts/items/pickups/prize.gd" id="2_n8o0k"]
+[ext_resource type="Texture2D" uid="uid://c8lh3so680esr" path="res://art/items/winners_prize.png" id="3_n8o0k"]
+
+[node name="Item" unique_id=1363583896 instance=ExtResource("1_ngijn")]
+item_name = "Winners Prize"
+item_description = "Awarded to those who achieved greatness"
+item_rarity = 2
+item_script = ExtResource("2_n8o0k")
+
+[node name="Sprite2D" parent="." index="0" unique_id=16991366]
+texture = ExtResource("3_n8o0k")
+
+[node name="CollisionShape2D" parent="PickupArea" parent_id_path=PackedInt32Array(1241392619) index="0" unique_id=529937250]
+position = Vector2(0, -0.5)
