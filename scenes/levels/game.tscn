@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://bfi16pdbm2r7t" path="res://sounds/ItemUpgrade.wav" id="30_j2fik"]
 [ext_resource type="AudioStream" uid="uid://bti0srf058tpt" path="res://sounds/ItemLost.wav" id="31_efprs"]
 [ext_resource type="AudioStream" uid="uid://dlsop2lwcpqrl" path="res://sounds/ItemSame.wav" id="32_e1au8"]
+[ext_resource type="AudioStream" uid="uid://dqa1wyug1i4bt" path="res://sounds/OSTs/ForGainShallBePain.wav" id="33_efprs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_limtx"]
 texture = ExtResource("1_a1osm")
@@ -541,3 +542,7 @@ stream = ExtResource("31_efprs")
 
 [node name="ItemSame" type="AudioStreamPlayer2D" parent="SlotMachine" unique_id=145503196]
 stream = ExtResource("32_e1au8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2115663356]
+stream = ExtResource("33_efprs")
+autoplay = true
