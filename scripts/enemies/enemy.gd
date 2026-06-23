@@ -35,6 +35,9 @@ func hurt(received_damage):
 	label.setup(int(received_damage))
 	
 	if health <= 0:
+		if Util.get_player():
+			Util.get_player().stats.kills += 1
+		
 		if randi_range(0, 100) < item_drop_chance_percent:
 			print(ItemPool.items)
 			var dropped_item_scene = ItemPool.get_random_item()

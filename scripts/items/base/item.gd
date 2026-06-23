@@ -76,6 +76,7 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 		return
 	
 	var player = body as Player
+	player.stats.total_items_collected += 1
 
 	#region Register/Call Item Behaviours
 	var item_on_player_attack = null

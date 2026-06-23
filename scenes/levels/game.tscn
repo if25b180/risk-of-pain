@@ -470,7 +470,8 @@ script = ExtResource("13_6370d")
 position = Vector2(-489, 33)
 
 [node name="ItemsTest" type="Node2D" parent="." unique_id=1521565078]
-position = Vector2(-472, 318)
+position = Vector2(10, -32)
+metadata/_edit_group_ = true
 
 [node name="Item" parent="ItemsTest" unique_id=1363583896 instance=ExtResource("14_fojqs")]
 position = Vector2(19, 77)
@@ -628,7 +629,8 @@ script = ExtResource("31_j2fik")
 [node name="Item" parent="PrizeContainer" unique_id=1751924751 instance=ExtResource("31_7yv8k")]
 
 [node name="DamageIncreasers" type="Node2D" parent="." unique_id=52401141]
-position = Vector2(117, 96)
+position = Vector2(-363, 358)
+metadata/_edit_group_ = true
 
 [node name="Item" parent="DamageIncreasers" unique_id=446955435 instance=ExtResource("14_hilwk")]
 

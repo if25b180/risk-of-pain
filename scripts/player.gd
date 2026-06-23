@@ -52,7 +52,9 @@ class_name Player
 	wall_jump_force = -300,
 	pogo_force = -300,
 	parry_force = 300,
-	thorns_damage = 0
+	thorns_damage = 0,
+	kills = 0,
+	total_items_collected = 0
 }
 
 # String = item_script_name | Dictionary = see `item.gd` -> `_on_pickup_area_body_entered()`
